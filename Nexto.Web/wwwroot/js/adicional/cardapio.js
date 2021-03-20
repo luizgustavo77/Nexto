@@ -112,7 +112,7 @@
             order: [[0, 'asc']],
             columns: [
                 {
-                    data: 'name',
+                    data: 'Nome',
                     title: 'Nome',
                     visible: true,
                     sortable: true,

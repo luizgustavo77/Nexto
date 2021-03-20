@@ -27,7 +27,7 @@ namespace Commom.Proxy
                 {
                     Item.Perfil = "Colaborador";
                     Item.Id = 1;
-                    Item.Name = "Administrador Teste";
+                    Item.Nome = "Administrador Teste";
                     user = Item;
                 }
 
@@ -54,7 +54,7 @@ namespace Commom.Proxy
                     Email = "email@hotmail.com",
                     Id = 1,
                     Login = "Teste",
-                    Name = "Teste",
+                    Nome = "Teste",
                     PassWord = "Senha",
                     Perfil = "Colaborador",
                     Sexo = "Outros",
@@ -81,7 +81,7 @@ namespace Commom.Proxy
                     Email = "email@hotmail.com1",
                     Id = 1,
                     Login = "Teste1",
-                    Name = "Teste1",
+                    Nome = "Teste1",
                     PassWord = "Senha1",
                     Perfil = "Colaborador1",
                     Sexo = "Outros1",
@@ -97,7 +97,7 @@ namespace Commom.Proxy
                     Email = "email@hotmail.com2",
                     Id = 2,
                     Login = "Teste2",
-                    Name = "Teste2",
+                    Nome = "Teste2",
                     PassWord = "Senha2",
                     Perfil = "Colaborador2",
                     Sexo = "Outros2",
@@ -113,7 +113,7 @@ namespace Commom.Proxy
                     Email = "email@hotmail.com3",
                     Id = 3,
                     Login = "Teste3",
-                    Name = "Teste3",
+                    Nome = "Teste3",
                     PassWord = "Senha3",
                     Perfil = "Colaborador3",
                     Sexo = "Outros3",
