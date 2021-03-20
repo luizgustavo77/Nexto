@@ -1,0 +1,100 @@
+﻿@model UserDto
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Ola!</h1>
+
+<h4>Vamos iniciar o cadastro?</h4>
+<hr />
+<div class="row">
+    <div class="col-2"></div>
+
+    <form asp-action="Registro" class="form-signin col-8">
+        <label style=" font-size: 65px; text-align: center; margin-left: 45%;">✒️</label>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <br />
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+
+        <br />
+        <label asp-for="Login" class="control-label"></label>
+        <input asp-for="Login" class="form-control" />
+        <span asp-validation-for="Login" class="text-danger"></span>
+
+        <br />
+        <label asp-for="PassWord" class="control-label"></label>
+        <input asp-for="PassWord" type="password" class="form-control" />
+        <span asp-validation-for="PassWord" class="text-danger"></span>
+
+        <br />
+        <label asp-for="PassWordConfirm" class="control-label"></label>
+        <input asp-for="PassWordConfirm" type="password" class="form-control" />
+        <span asp-validation-for="PassWordConfirm" class="text-danger"></span>
+
+        <br />
+        <label asp-for="BirthDate" class="control-label"></label>
+        <input asp-for="BirthDate" type="date" class="form-control" />
+        <span asp-validation-for="BirthDate" class="text-danger"></span>
+
+        <br />
+        <label asp-for="Telefone" class="control-label"></label>
+        <input asp-for="Telefone" class="form-control phone_with_ddd" />
+        <span asp-validation-for="Telefone" class="text-danger"></span>
+
+        <br />
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" type="email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+
+        <br />
+        <label asp-for="CPF" class="control-label"></label>
+        <input asp-for="CPF" class="form-control cpf" />
+        <span asp-validation-for="CPF" class="text-danger"></span>
+
+        <br />
+        <label asp-for="Sexo" class="control-label"></label>
+        <select asp-for="Sexo" class="form-control">
+            <option value="">Selecione</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
+            <option value="Outros">Outros</option>
+        </select>
+        <span asp-validation-for="Sexo" class="text-danger"></span>
+
+        <br />
+        <label asp-for="Estado" class="control-label"></label>
+        <input asp-for="Estado" class="form-control" />
+        <span asp-validation-for="Estado" class="text-danger"></span>
+
+        <br />
+        <label asp-for="Cidade" class="control-label"></label>
+        <input asp-for="Cidade" class="form-control" />
+        <span asp-validation-for="Cidade" class="text-danger"></span>
+
+        @*<br />
+        <label asp-for="Perfil" class="control-label"></label>
+        <select asp-for="Perfil" class="form-control">
+            <option value="">Selecione</option>
+            <option value="Cliente">Cliente</option>
+            <option value="Colaborador">Colaborador</option>
+        </select>
+        <span asp-validation-for="Perfil" class="text-danger"></span>*@
+
+        <br />
+        <button type="submit" value="Criar" class="btn btn-lg btn-primary btn-block"> Criar </button>
+    </form>
+
+    <div class="col-2"></div>
+</div>
+
+<div>
+    <a class="btn btn-sm btn-primary block" asp-controller="Home" asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
