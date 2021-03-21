@@ -9,9 +9,9 @@
 <h4>Bem vindo de volta!</h4>
 <hr />
 <div class="row">
-    <div class="col-2"></div>
+    <div class="col-4"></div>
 
-    <form asp-action="Login" class="form-signin col-8">
+    <form asp-action="Login" class="form-signin col-4">
         <label style=" font-size: 65px; text-align: center; margin-left: 45%;">✒️</label>
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -31,12 +31,11 @@
         <a class="btn btn-lg btn-block btn-secondary" asp-area="" asp-controller="Login" asp-action="Registro"> Cadastrar </a>
     </form>
 
-    <div class="col-2"></div>
 </div>
 
-<div>
+@*<div>
     <a class="btn btn-sm btn-primary block" asp-controller="Home" asp-action="Index">Voltar</a>
-</div>
+</div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -1,4 +1,6 @@
-﻿using Commom.Dto.Solicitacao;
+﻿using Commom.Dto.Core;
+using Commom.Dto.Solicitacao;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -24,9 +26,27 @@ namespace Commom.Proxy
                 FormularioDto formulario = new FormularioDto()
                 {
                     Id = 1,
-                    CampoAplicacao = ""
+                    CampoAplicacao = texto,
+                    DescricaoDesenhos = texto,
+                    DescricaoInvencao = texto,
+                    Enviado = DateTime.Now,
+                    EstadoTecnica = texto,
+                    FundamentosInvencao = texto,
+                    Problemas = texto,
+                    Responsavel = new UserDto()
+                    {
+                        Id = 1,
+                        Nome = "Paulo"
+                    },
+                    Retorno = "Por favor rever Campo de Aplicacao",
+                    Solucaoinvencao = texto,
+                    Vantagens = texto,
+                    Solicitacao = new SolicitacaoDto()
+                    {
+                        Id = 1
+                    }
                 };
-                return Task.Delay(100).ContinueWith(t => new FormularioDto());
+                return Task.Delay(100).ContinueWith(t => formulario);
             }
         }
 

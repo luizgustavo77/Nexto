@@ -262,3 +262,7 @@ a {
         background: #fff;
         border: 2px solid #1f5297;
     }
+
+.resume-hover div:hover {
+    border: 2px solid #1f5297;
+}

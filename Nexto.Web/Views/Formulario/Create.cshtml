@@ -6,7 +6,8 @@
 
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-2"></div>
+    <div class="col-8">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -15,10 +16,10 @@
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             @*<div class="form-group">
-            <label asp-for="Enviado" class="control-label"></label>
-            <input asp-for="Enviado" class="form-control" />
-            <span asp-validation-for="Enviado" class="text-danger"></span>
-            </div>*@
+                <label asp-for="Enviado" class="control-label"></label>
+                <input asp-for="Enviado" class="form-control" />
+                <span asp-validation-for="Enviado" class="text-danger"></span>
+                </div>*@
             <div class="form-group">
                 <label asp-for="Retorno" class="control-label"></label>
                 <textarea asp-for="Retorno" class="form-control"> </textarea>
@@ -66,13 +67,10 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" asp-controller="Solicitacao" class="btn btn-primary">Voltar</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index" asp-controller="Solicitacao" class="btn btn-primary">Voltar</a>
 </div>
 
 @section Scripts {
