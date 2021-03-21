@@ -5,10 +5,6 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Commom", "Commom\Commom.csproj", "{9BC2D065-F34F-4FC8-9278-CF3A73DE6A9D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Base", "Base", "{57753C8C-0DBC-49E2-8A61-4666087AC3BC}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server.Base", "Base\Server.Base\Server.Base.csproj", "{41F9384D-83DC-490F-AAD6-FD0FD68D8BD6}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nexto.Web", "Nexto.Web\Nexto.Web.csproj", "{8BC1F355-B78A-4D44-B61F-F60BC12F72EB}"
 EndProject
 Global
@@ -21,10 +17,6 @@ Global
 		{9BC2D065-F34F-4FC8-9278-CF3A73DE6A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BC2D065-F34F-4FC8-9278-CF3A73DE6A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BC2D065-F34F-4FC8-9278-CF3A73DE6A9D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41F9384D-83DC-490F-AAD6-FD0FD68D8BD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41F9384D-83DC-490F-AAD6-FD0FD68D8BD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41F9384D-83DC-490F-AAD6-FD0FD68D8BD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41F9384D-83DC-490F-AAD6-FD0FD68D8BD6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8BC1F355-B78A-4D44-B61F-F60BC12F72EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8BC1F355-B78A-4D44-B61F-F60BC12F72EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BC1F355-B78A-4D44-B61F-F60BC12F72EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -32,9 +24,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{41F9384D-83DC-490F-AAD6-FD0FD68D8BD6} = {57753C8C-0DBC-49E2-8A61-4666087AC3BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48E36EF9-6418-4765-B078-FC6BE8756646}

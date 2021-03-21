@@ -1,14 +1,105 @@
 ﻿@model IEnumerable<UserDto>
 
-@{
-    ViewData["Title"] = "Index";
-}
-
-<h1>Lista</h1>
+@{ ViewData["Title"] = "Usuarios"; }
 
 <p>
-    <a asp-action="Create">Criar novo</a>
+    <a class="btn btn-primary" data-toggle="modal" data-target="#novo" style="color: white; cursor:pointer;">Criar novo</a>
 </p>
+
+<form method="post" asp-action="Create">
+    <div id="novo" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Novo usuário</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label style=" font-size: 65px; text-align: center; margin-left: 45%;">✒️</label>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <br />
+                    <label for="Nome" class="control-label">Nome</label>
+                    <input name="Nome" class="form-control" />
+                    <span for="Nome" class="text-danger"></span>
+
+                    <br />
+                    <label for="Login" class="control-label">Login</label>
+                    <input name="Login" class="form-control" />
+                    <span for="Login" class="text-danger"></span>
+
+                    <br />
+                    <label for="PassWord" class="control-label">Password</label>
+                    <input name="PassWord" type="password" class="form-control" />
+                    <span for="PassWord" class="text-danger"></span>
+
+                    <br />
+                    <label for="PassWordConfirm" class="control-label">PassWordConfirm</label>
+                    <input name="PassWordConfirm" type="password" class="form-control" />
+                    <span for="PassWordConfirm" class="text-danger"></span>
+
+                    <br />
+                    <label for="BirthDate" class="control-label">Nascimento</label>
+                    <input name="BirthDate" type="date" class="form-control" />
+                    <span for="BirthDate" class="text-danger"></span>
+
+                    <br />
+                    <label for="Telefone" class="control-label">Telefone</label>
+                    <input name="Telefone" class="form-control phone_with_ddd" />
+                    <span for="Telefone" class="text-danger"></span>
+
+                    <br />
+                    <label for="Email" class="control-label">E-Mail</label>
+                    <input name="Email" type="email" class="form-control" />
+                    <span for="Email" class="text-danger"></span>
+
+                    <br />
+                    <label for="CPF" class="control-label">CPF</label>
+                    <input name="CPF" class="form-control cpf" />
+                    <span for="CPF" class="text-danger"></span>
+
+                    <br />
+                    <label for="Sexo" class="control-label">Sexo</label>
+                    <select name="Sexo" class="form-control">
+                        <option value="">Selecione</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Feminino">Feminino</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                    <span for="Sexo" class="text-danger"></span>
+
+                    <br />
+                    <label for="Estado" class="control-label">Estado</label>
+                    <input name="Estado" class="form-control" />
+                    <span for="Estado" class="text-danger"></span>
+
+                    <br />
+                    <label for="Cidade" class="control-label">Cidade</label>
+                    <input name="Cidade" class="form-control" />
+                    <span for="Cidade" class="text-danger"></span>
+
+                    <br />
+                    <label for="Perfil" class="control-label">Perfil</label>
+                    <select name="Perfil" class="form-control">
+                        <option value="">Selecione</option>
+                        <option value="Cliente">Cliente</option>
+                        <option value="Colaborador">Colaborador</option>
+                    </select>
+                    <span for="Perfil" class="text-danger"></span>
+
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"> Criar </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -19,11 +110,11 @@
                 @Html.DisplayNameFor(model => model.Login)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.PassWord)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.PassWord)
+                </th>*@
             @*<th>
-                @Html.DisplayNameFor(model => model.BirthDate)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.BirthDate)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Telefone)
             </th>
@@ -31,17 +122,17 @@
                 @Html.DisplayNameFor(model => model.Email)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.CPF)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sexo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cidade)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.CPF)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sexo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cidade)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Perfil)
             </th>
@@ -49,47 +140,47 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Login)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.PassWord)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BirthDate)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.CPF)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sexo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cidade)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Perfil)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Apagar</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nome)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Login)
+    </td>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.PassWord)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BirthDate)
+        </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.Telefone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.CPF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sexo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cidade)
+        </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.Perfil)
+    </td>
+    <td>
+        <a asp-action="Edit" asp-route-id="@item.Id">🖋️</a> |
+        <a asp-action="Details" asp-route-id="@item.Id">📄</a> |
+        <a asp-action="Delete" asp-route-id="@item.Id">🗑️</a>
+    </td>
+</tr>}
     </tbody>
 </table>

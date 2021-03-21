@@ -1,0 +1,128 @@
+﻿@model IEnumerable<Commom.Dto.Solicitacao.SolicitacaoDto>
+
+@{
+    ViewData["Title"] = "Solicitações";
+}
+
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nova solicitacao</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Sigla)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataFim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Sigla)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataFim)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">🖋️</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">📄</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">🗑️</a> |
+                    <a data-toggle="modal" data-target="#formulario" style="cursor: pointer;">📋</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="formulario" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Histórico da solicitação</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12" data-aos="fade-up">
+                        <h3 class="resume-title">Formação Acadêmica</h3>
+                        <h5> &nbsp</h5>
+                        <div class="resume-item">
+                            <h4>Faculdade de Tecnologia Termomecânica</h4>
+                            <h5>2017 - 2022</h5>
+                            <p><em>Bacharel em Engenharia de Computação</em></p>
+                        </div>
+                        <div class="resume-item">
+                            <h4>ETEC Júlio de Mesquita</h4>
+                            <h5>2012 - 2014</h5>
+                            <p><em>Técnico em Eletrônica</em></p>
+                        </div>
+
+                        <h3 class="resume-title">Experiencia Profissional</h3>
+                        <div class="resume-item">
+                            <h4>Fundação Salvador Arena</h4>
+                            <h5>2020 - Atual</h5>
+                            <p><em>Analista de Sistemas Treinee</em></p>
+                        </div>
+                        <div class="resume-item">
+                            <h4>RSComputer</h4>
+                            <h5>2020 - Atual</h5>
+                            <p><em>Desenvolvedor Junior (Freelance)</em></p>
+                        </div>
+                        <div class="resume-item">
+                            <h4>Termomecânica</h4>
+                            <h5>2019 - 2020</h5>
+                            <p><em>Estagio em Desenvolvimento de Sistemas</em></p>
+                        </div>
+                        <div class="resume-item">
+                            <h4>Yami Consultoria</h4>
+                            <h5>2018 - 2019</h5>
+                            <p><em>Estagio em Arquitetura de Servidores</em></p>
+                        </div>
+                        <div class="resume-item">
+                            <h4>Automação Bancária Industrial – ABI</h4>
+                            <h5>2014 - 2018</h5>
+                            <p><em>Técnico em Eletrônica</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"> Criar </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

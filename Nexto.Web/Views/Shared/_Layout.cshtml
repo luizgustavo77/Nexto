@@ -12,13 +12,15 @@
     <script src="~/lib/jquery/dist/jquery-ui-1.12.1.js"></script>
     <script src="~/lib/jquery-data-tables/js/jquery.dataTables.js"></script>
     <script src="~/lib/jquery-data-tables/js/dataTables.bootstrap.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>    
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    
     <script type="text/javascript">
         var base_path = '@Url.Content("~")';
     </script>
     @RenderSection("Scripts", required: false)
 
-    @*CSS*@
+    @*CSS*@    
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/jquery-data-tables/css/dataTables.bootstrap.css" />
@@ -51,6 +53,9 @@
                         </li>
                         @if (Nexto.Web.Helpers.Session.GetObject<UserDto>("usuario") != null)
                         {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Solicitacao" asp-action="Index">Solicitacoes</a>
+                            </li>
 
                             if (Nexto.Web.Helpers.Session.GetObject<UserDto>("usuario").Perfil == "Colaborador")
                             {

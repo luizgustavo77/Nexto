@@ -27,6 +27,33 @@ namespace Nexto.Web.Controllers
             return View(users);
         }
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Nome,Login,PassWord,PassWordConfirm,BirthDate,Telefone,Email,CPF,Sexo,Estado,Cidade,Perfil")] UserDto user)
+        {
+            if (user == null || string.IsNullOrEmpty(user.PassWord) || !user.PassWord.Equals(user.PassWordConfirm))
+            {
+                ModelState.AddModelError("PassWordConfirm", "Senhas diferentes!");
+            }
+
+            else if (ModelState.IsValid)
+            {
+                //user.Id = Guid.NewGuid();
+                user.Perfil = "Cliente";
+                RetornaAcaoDto result = await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).Add(user);
+                if (result.Retorno)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("Login", result.Mensagem);
+                }
+            }
+            return View(user);
+        }
+
         [AutorizacaoSessionAdmin]
         public async Task<IActionResult> Details(int? id)
         {
