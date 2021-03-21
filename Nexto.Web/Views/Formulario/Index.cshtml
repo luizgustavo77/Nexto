@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Commom.Dto.Solicitacao.FormularioDto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Enviado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Retorno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CampoAplicacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FundamentosInvencao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoTecnica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Problemas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solucaoinvencao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vantagens)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescricaoDesenhos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescricaoInvencao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Enviado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Retorno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CampoAplicacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FundamentosInvencao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoTecnica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Problemas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Solucaoinvencao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vantagens)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescricaoDesenhos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescricaoInvencao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -72,7 +72,7 @@ namespace Nexto.Web.Controllers
             return View(user);
         }
 
-
+        [AutorizacaoSessionAdmin]
         public async Task<IActionResult> Logout()
         {
             Session.CleanObject();

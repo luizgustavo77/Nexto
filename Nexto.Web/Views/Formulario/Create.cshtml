@@ -1,0 +1,80 @@
+﻿@model Commom.Dto.Solicitacao.FormularioDto
+
+@{
+    ViewData["Title"] = "Novo";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="Enviado" class="control-label"></label>
+            <input asp-for="Enviado" class="form-control" />
+            <span asp-validation-for="Enviado" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Retorno" class="control-label"></label>
+                <textarea asp-for="Retorno" class="form-control"> </textarea>
+                <span asp-validation-for="Retorno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CampoAplicacao" class="control-label"></label>
+                <textarea asp-for="CampoAplicacao" class="form-control"> </textarea>
+                <span asp-validation-for="CampoAplicacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FundamentosInvencao" class="control-label"></label>
+                <textarea asp-for="FundamentosInvencao" class="form-control"> </textarea>
+                <span asp-validation-for="FundamentosInvencao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EstadoTecnica" class="control-label"></label>
+                <textarea asp-for="EstadoTecnica" class="form-control"> </textarea>
+                <span asp-validation-for="EstadoTecnica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Problemas" class="control-label"></label>
+                <textarea asp-for="Problemas" class="form-control"> </textarea>
+                <span asp-validation-for="Problemas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Solucaoinvencao" class="control-label"></label>
+                <textarea asp-for="Solucaoinvencao" class="form-control"> </textarea>
+                <span asp-validation-for="Solucaoinvencao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vantagens" class="control-label"></label>
+                <textarea asp-for="Vantagens" class="form-control"> </textarea>
+                <span asp-validation-for="Vantagens" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DescricaoDesenhos" class="control-label"></label>
+                <textarea asp-for="DescricaoDesenhos" class="form-control"> </textarea>
+                <span asp-validation-for="DescricaoDesenhos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DescricaoInvencao" class="control-label"></label>
+                <textarea asp-for="DescricaoInvencao" class="form-control"> </textarea>
+                <span asp-validation-for="DescricaoInvencao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Solicitacao" class="btn btn-primary">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

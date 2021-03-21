@@ -1,4 +1,5 @@
-﻿using Commom.Dto.Solicitacao;
+﻿using Commom.Dto;
+using Commom.Dto.Solicitacao;
 using Commom.Proxy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Nexto.Web.Controllers
 {
+    [AutorizacaoSessionAdmin]
     public class SolicitacaoController : Controller
     {
         private readonly ILogger<SolicitacaoController> _logger;
@@ -16,16 +18,38 @@ namespace Nexto.Web.Controllers
         {
             _logger = logger;
         }
-
-        [AutorizacaoSessionAdmin]
+                
         public async Task<IActionResult> Index()
         {
             List<SolicitacaoDto> solicitacoes = await new APISolicitacao(bool.Parse(AppSettings.Get("ambienteTeste"))).GetAll();
 
             return View(solicitacoes);
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
 
-        [AutorizacaoSessionAdmin]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Nome,Login,PassWord,PassWordConfirm,BirthDate,Telefone,Email,CPF,Sexo,Estado,Cidade,Perfil")] SolicitacaoDto solicitacao)
+        {
+            if (ModelState.IsValid)
+            {
+                //solicitacao.Id = Guid.NewGuid();
+                RetornaAcaoDto result = await new APISolicitacao(bool.Parse(AppSettings.Get("ambienteTeste"))).Add(solicitacao);
+                if (result.Retorno)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("Login", result.Mensagem);
+                }
+            }
+            return View(solicitacao);
+        }
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -41,8 +65,7 @@ namespace Nexto.Web.Controllers
 
             return View(solicitacao);
         }
-
-        [AutorizacaoSessionAdmin]
+                
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -58,8 +81,7 @@ namespace Nexto.Web.Controllers
             return View(solicitacao);
         }
 
-        [HttpPost]
-        [AutorizacaoSessionAdmin]
+        [HttpPost]        
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Login,PassWord,PassWordConfirm,BirthDate,Telefone,Email,CPF,Sexo,Estado,Cidade,Perfil")] SolicitacaoDto solicitacao)
         {
@@ -76,8 +98,7 @@ namespace Nexto.Web.Controllers
             }
             return View(solicitacao);
         }
-
-        [AutorizacaoSessionAdmin]
+                
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -94,8 +115,7 @@ namespace Nexto.Web.Controllers
             return View(solicitacao);
         }
 
-        [HttpPost, ActionName("Delete")]
-        [AutorizacaoSessionAdmin]
+        [HttpPost, ActionName("Delete")]        
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

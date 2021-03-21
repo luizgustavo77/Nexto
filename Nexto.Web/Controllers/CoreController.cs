@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Nexto.Web.Controllers
 {
+    [AutorizacaoSessionAdmin]
     public class CoreController : Controller
     {
         private readonly ILogger<CoreController> _logger;
@@ -18,15 +19,13 @@ namespace Nexto.Web.Controllers
         {
             _logger = logger;
         }
-
-        [AutorizacaoSessionAdmin]
+        
         public async Task<IActionResult> Index()
         {
             List<UserDto> users = await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).GetAll();
 
             return View(users);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -53,8 +52,7 @@ namespace Nexto.Web.Controllers
             }
             return View(user);
         }
-
-        [AutorizacaoSessionAdmin]
+                
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -70,8 +68,7 @@ namespace Nexto.Web.Controllers
 
             return View(user);
         }
-
-        [AutorizacaoSessionAdmin]
+                
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -87,8 +84,7 @@ namespace Nexto.Web.Controllers
             return View(user);
         }
 
-        [HttpPost]
-        [AutorizacaoSessionAdmin]
+        [HttpPost]        
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Login,PassWord,PassWordConfirm,BirthDate,Telefone,Email,CPF,Sexo,Estado,Cidade,Perfil")] UserDto user)
         {
@@ -105,8 +101,7 @@ namespace Nexto.Web.Controllers
             }
             return View(user);
         }
-
-        [AutorizacaoSessionAdmin]
+                
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,8 +118,7 @@ namespace Nexto.Web.Controllers
             return View(user);
         }
 
-        [HttpPost, ActionName("Delete")]
-        [AutorizacaoSessionAdmin]
+        [HttpPost, ActionName("Delete")]        
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

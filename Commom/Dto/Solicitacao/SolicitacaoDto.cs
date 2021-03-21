@@ -14,6 +14,6 @@ namespace Commom.Dto.Solicitacao
         public UserDto Cliente { get; set; }
         public UserDto Colaborador { get; set; }
         public string Status { get; set; }
-        List<int> Formularios { get; set; }
+        public List<FormularioDto> Formularios { get; set; }
     }
 }

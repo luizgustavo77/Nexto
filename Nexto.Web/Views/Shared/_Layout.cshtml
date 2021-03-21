@@ -54,13 +54,13 @@
                         @if (Nexto.Web.Helpers.Session.GetObject<UserDto>("usuario") != null)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Solicitacao" asp-action="Index">Solicitacoes</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Solicitacao" asp-action="Index">Solicitações</a>
                             </li>
 
                             if (Nexto.Web.Helpers.Session.GetObject<UserDto>("usuario").Perfil == "Colaborador")
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-area="" asp-controller="Core" asp-action="Index">Usuarios</a>
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Core" asp-action="Index">Usuários</a>
                                 </li>
                             }
                         }

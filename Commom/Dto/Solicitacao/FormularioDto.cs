@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Commom.Dto.Core;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,6 +8,8 @@ namespace Commom.Dto.Solicitacao
     public class FormularioDto : BaseDto
     {
         public SolicitacaoDto Solicitacao { get; set; }
+        public DateTime Enviado { get; set; }
+        public UserDto Responsavel { get; set; }
         public string Retorno { get; set; }
         public string CampoAplicacao { get; set; }
         public string FundamentosInvencao { get; set; }

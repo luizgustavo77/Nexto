@@ -1,4 +1,5 @@
-﻿using Commom.Dto.Solicitacao;
+﻿using Commom.Dto.Core;
+using Commom.Dto.Solicitacao;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -38,7 +39,30 @@ namespace Commom.Proxy
                     Nome = "Solicitacao",
                     Sigla = "SO",
                     Status = "Em Andamento",
-                    Tipo = "Mecnica"
+                    Tipo = "Mecnica",                    
+                    Formularios = new List<FormularioDto>()
+                    {
+                        new FormularioDto()
+                        {
+                            Id = 1,
+                            Enviado = DateTime.Now,
+                            Responsavel = new UserDto()
+                            {
+                                Id = 1,
+                                Nome= "Luiz",
+                            }
+                        },
+                        new FormularioDto()
+                        {
+                            Id = 2,
+                            Enviado = DateTime.Now,
+                            Responsavel = new UserDto()
+                            {
+                                Id = 2,
+                                Nome= "Paulo",
+                            }
+                        }
+                    }
                 };
 
                 return Task.Delay(100).ContinueWith(t => solicitacao);
@@ -69,7 +93,30 @@ namespace Commom.Proxy
                     Nome = "Solicitacao1",
                     Sigla = "SO1",
                     Status = "Em Andamento1",
-                    Tipo = "Mecnica1"
+                    Tipo = "Mecnica1",
+                    Formularios = new List<FormularioDto>()
+                    {
+                        new FormularioDto()
+                        {
+                            Id = 1,
+                            Enviado = DateTime.Now,
+                            Responsavel = new UserDto()
+                            {
+                                Id = 1,
+                                Nome= "Luiz",
+                            }
+                        },
+                        new FormularioDto()
+                        {
+                            Id = 2,
+                            Enviado = DateTime.Now,
+                            Responsavel = new UserDto()
+                            {
+                                Id = 2,
+                                Nome= "Paulo",
+                            }
+                        }
+                    }
                 };
 
                 SolicitacaoDto solicitacao2 = new SolicitacaoDto()
@@ -90,7 +137,30 @@ namespace Commom.Proxy
                     Nome = "Solicitacao2",
                     Sigla = "SO2",
                     Status = "Em Andamento2",
-                    Tipo = "Mecnica2"
+                    Tipo = "Mecnica2",
+                    Formularios = new List<FormularioDto>()
+                    {
+                        new FormularioDto()
+                        {
+                            Id = 1,
+                            Enviado = DateTime.Now,
+                            Responsavel = new UserDto()
+                            {
+                                Id = 1,
+                                Nome= "Luiz",
+                            }
+                        },
+                        new FormularioDto()
+                        {
+                            Id = 2,
+                            Enviado = DateTime.Now,
+                            Responsavel = new UserDto()
+                            {
+                                Id = 2,
+                                Nome= "Paulo",
+                            }
+                        }
+                    }
                 };
 
                 List<SolicitacaoDto> solicitacoes = new List<SolicitacaoDto>() { solicitacao1, solicitacao2};
