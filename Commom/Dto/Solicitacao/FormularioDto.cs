@@ -14,7 +14,7 @@ namespace Commom.Dto.Solicitacao
         public DateTime Enviado { get; set; }
         public UserDto Responsavel { get; set; }
 
-        [DisplayName("Mensagem de retorno")]
+        [DisplayName("Feedback escritorio para cliente")]
         public string Retorno { get; set; }
 
         [DisplayName("Aplicação")]
