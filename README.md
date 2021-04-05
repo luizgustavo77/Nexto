@@ -12,4 +12,8 @@
 - MVC
 - Session
 
+# :person: **Primeiro acesso**
+- Usuario: Admin
+- Senha: nota10
+
 <img src="https://media1.tenor.com/images/107bd08b129340b7092671601e28d284/tenor.gif">
