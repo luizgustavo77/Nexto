@@ -12,7 +12,7 @@
 - MVC
 - Session
 
-# :person: **Primeiro acesso**
+# :ok_hand: **Primeiro acesso**
 - Usuario: Admin
 - Senha: nota10
 
