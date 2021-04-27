@@ -52,7 +52,7 @@
                     @Html.DisplayFor(modelItem => item.DataFim)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Status)
+                    @Html.DisplayFor(modelItem => new Select().Status.FirstOrDefault(x => x.Id == item.Status).Name)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">🖋️</a> |

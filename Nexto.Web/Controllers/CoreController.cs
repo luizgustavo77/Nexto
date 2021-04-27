@@ -19,7 +19,7 @@ namespace Nexto.Web.Controllers
         {
             _logger = logger;
         }
-        
+
         public async Task<IActionResult> Index()
         {
             List<UserDto> users = await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).GetAll();
@@ -39,7 +39,7 @@ namespace Nexto.Web.Controllers
             else if (ModelState.IsValid)
             {
                 //user.Id = Guid.NewGuid();
-                user.Perfil = "Cliente";
+                user.Perfil = 1;
                 RetornaAcaoDto result = await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).Add(user);
                 if (result.Retorno)
                 {
@@ -52,7 +52,7 @@ namespace Nexto.Web.Controllers
             }
             return View(user);
         }
-                
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -68,7 +68,7 @@ namespace Nexto.Web.Controllers
 
             return View(user);
         }
-                
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,7 +84,7 @@ namespace Nexto.Web.Controllers
             return View(user);
         }
 
-        [HttpPost]        
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Login,PassWord,PassWordConfirm,BirthDate,Telefone,Email,CPF,Sexo,Estado,Cidade,Perfil")] UserDto user)
         {
@@ -101,7 +101,7 @@ namespace Nexto.Web.Controllers
             }
             return View(user);
         }
-                
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -118,7 +118,7 @@ namespace Nexto.Web.Controllers
             return View(user);
         }
 
-        [HttpPost, ActionName("Delete")]        
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

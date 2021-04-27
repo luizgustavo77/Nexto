@@ -32,7 +32,7 @@ namespace Nexto.Web.Controllers
             else if (ModelState.IsValid)
             {
                 //user.Id = Guid.NewGuid();
-                user.Perfil = "Cliente";
+                user.Perfil = 1;
                 RetornaAcaoDto result = await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).Add(user);
                 if (result.Retorno)
                 {

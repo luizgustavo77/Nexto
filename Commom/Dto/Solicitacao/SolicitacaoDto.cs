@@ -18,7 +18,7 @@ namespace Commom.Dto.Solicitacao
         public DateTime DataFim { get; set; }
         public UserDto Cliente { get; set; }
         public UserDto Colaborador { get; set; }
-        public string Status { get; set; }
+        public int Status { get; set; }
         public List<FormularioDto> Formularios { get; set; }
     }
 }

@@ -38,7 +38,7 @@ namespace Commom.Proxy
                     DataInicio = DateTime.Now,
                     Nome = "Solicitacao",
                     Sigla = "SO",
-                    Status = "Em Andamento",
+                    Status = 1,
                     Tipo = "Mecnica",                    
                     Formularios = new List<FormularioDto>()
                     {
@@ -92,7 +92,7 @@ namespace Commom.Proxy
                     DataInicio = DateTime.Now,
                     Nome = "Solicitacao1",
                     Sigla = "SO1",
-                    Status = "Em Andamento1",
+                    Status = 1,
                     Tipo = "Mecnica1",
                     Formularios = new List<FormularioDto>()
                     {
@@ -136,7 +136,7 @@ namespace Commom.Proxy
                     DataInicio = DateTime.Now,
                     Nome = "Solicitacao2",
                     Sigla = "SO2",
-                    Status = "Em Andamento2",
+                    Status = 1,
                     Tipo = "Mecnica2",
                     Formularios = new List<FormularioDto>()
                     {

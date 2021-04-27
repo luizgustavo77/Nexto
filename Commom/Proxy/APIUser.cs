@@ -25,7 +25,7 @@ namespace Commom.Proxy
                     user = await Http.GetFromJsonAsync<UserDto>(_BaseUrl + "/" + _baseEndpoint + "/Login/" + Item.Login + "/" + Item.PassWord);
                 else if (Item != null && Item.Login.Equals("Admin") && Item.PassWord.Equals("nota10"))
                 {
-                    Item.Perfil = "Colaborador";
+                    Item.Perfil = 2;
                     Item.Id = 1;
                     Item.Nome = "Administrador Teste";
                     user = Item;
@@ -56,8 +56,8 @@ namespace Commom.Proxy
                     Login = "Teste",
                     Nome = "Teste",
                     PassWord = "Senha",
-                    Perfil = "Colaborador",
-                    Sexo = "Outros",
+                    Perfil = 2,
+                    Sexo = 3,
                     Telefone = "(11) 98888-8888"
                 };
 
@@ -83,8 +83,8 @@ namespace Commom.Proxy
                     Login = "Teste1",
                     Nome = "Teste1",
                     PassWord = "Senha1",
-                    Perfil = "Colaborador1",
-                    Sexo = "Outros1",
+                    Perfil = 2,
+                    Sexo = 3,
                     Telefone = "(11) 98888-8881"
                 };
 
@@ -99,8 +99,8 @@ namespace Commom.Proxy
                     Login = "Teste2",
                     Nome = "Teste2",
                     PassWord = "Senha2",
-                    Perfil = "Colaborador2",
-                    Sexo = "Outros2",
+                    Perfil = 2,
+                    Sexo = 3,
                     Telefone = "(11) 98888-8882"
                 };
 
@@ -115,8 +115,8 @@ namespace Commom.Proxy
                     Login = "Teste3",
                     Nome = "Teste3",
                     PassWord = "Senha3",
-                    Perfil = "Colaborador3",
-                    Sexo = "Outros3",
+                    Perfil = 2,
+                    Sexo = 3,
                     Telefone = "(11) 98888-8883"
                 };
 

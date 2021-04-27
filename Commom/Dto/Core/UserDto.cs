@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Commom.Dto.SelectList;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -39,7 +40,7 @@ namespace Commom.Dto.Core
 
         [Required(ErrorMessage = "Campo obrigatório!")]
         [DisplayName("Sexo")]
-        public string Sexo { get; set; }
+        public int Sexo { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório!")]
         [DisplayName("Estado")]
@@ -51,6 +52,6 @@ namespace Commom.Dto.Core
 
         //--
         [Required(ErrorMessage = "Campo obrigatório!")]
-        public string Perfil { get; set; }
+        public int Perfil { get; set; }
     }
 }
