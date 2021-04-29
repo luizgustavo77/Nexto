@@ -122,5 +122,5 @@ namespace Nexto.Web.Controllers
             await new APISolicitacao(bool.Parse(AppSettings.Get("ambienteTeste"))).Delete(id);
             return RedirectToAction(nameof(Index));
         }
-    }
+    } 
 }

@@ -6,7 +6,7 @@ namespace Commom.Dto.Solicitacao
 {
     public class ArquivoDto : BaseDto
     {
-        public byte[] Arquivo { get; set; }
+        public byte[] Conteudo { get; set; }
         public string Extensao { get; set; }
     }
 }

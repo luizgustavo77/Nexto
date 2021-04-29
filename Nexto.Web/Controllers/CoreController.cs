@@ -7,6 +7,10 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Commom.Dto.Solicitacao;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+using System.Linq;
 
 namespace Nexto.Web.Controllers
 {
@@ -124,6 +128,34 @@ namespace Nexto.Web.Controllers
         {
             await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).Delete(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> UploadFiles()
+        {
+            IList<ArquivoDto> result = new List<ArquivoDto>();
+            try
+            {
+                foreach (var file in Request.Form.Files)
+                {
+                    if (file != null || file.ContentType.ToLower().StartsWith("image/"))
+                    {
+                        MemoryStream ms = new MemoryStream();
+                        file.OpenReadStream().CopyTo(ms);
+                        ArquivoDto arquivo = new ArquivoDto();
+                        arquivo.Nome = file.Name;
+                        arquivo.Conteudo = ms.ToArray();
+                        arquivo.Extensao = file.ContentType;
+
+                        result.Add(arquivo);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+            }
+
+            return Json(result);
         }
     }
 }

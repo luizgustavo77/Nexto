@@ -8,7 +8,7 @@ namespace Nexto.Web.Helpers
         
         public static void Create<T>(string key, T objeto)
         {
-            string jsonValue = new Serializer().SetObject<T>(objeto);
+            string jsonValue = Serializer.SetObject<T>(objeto);
             _accessor.HttpContext.Session.SetString(key, jsonValue);
         }
 
@@ -19,7 +19,7 @@ namespace Nexto.Web.Helpers
                 json = _accessor.HttpContext.Session.GetString(key);
             if (string.IsNullOrWhiteSpace(json))
                 return default(T);
-            return new Serializer().GetObject<T>(json);
+            return Serializer.GetObject<T>(json);
         }
 
         public static void CleanObject()

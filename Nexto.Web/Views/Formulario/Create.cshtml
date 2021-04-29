@@ -69,6 +69,19 @@
                 <input type="submit" value="Create" class="btn btn-primary" />
                 <a asp-action="Index" asp-controller="Solicitacao" class="btn btn-primary">Voltar</a>
             </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <input id="txt_arquivo" type="text" alt="Arquivo" class="form-control" style="font-size:14px !important; width:80%; height:100%;" placeholder="Selecione um arquivo." readonly="readonly" disabled="disabled" onclick="$('#IdInputTypeFile').click();">
+
+                    <div class="input-group-addon" onclick="$('#IdInputTypeFile').click();">
+                        <span style=" font-size: 30px;">⬇️</span>
+                    </div>
+                </div>
+                @*Aqui defini que só aceita PDF*@
+                <input id="IdInputTypeFile" type="file" title="Arquivos" name="files[]" multiple style="width:100%; height:100%; display: none;">
+            </div>
+
         </form>
     </div>
 </div>
@@ -76,3 +89,24 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<script>
+    $("#IdInputTypeFile").fileupload({
+        dataType: 'json',
+        url: base_path + "/Core/UploadFiles",
+        autoUpload: true,
+        done: function (e, data) {
+            debugger;
+        },
+        error: function (error) {
+            alert('Houve um erro ao tentar submeter o arquivo.');
+        }
+    });
+
+    $(document).ready(function () {
+        $("IdDivDaImagem").each(function () {
+            this.style.pointerEvents = 'none'; // para ativar so adicionar auto em vez de none
+        });
+
+    });
+</script>

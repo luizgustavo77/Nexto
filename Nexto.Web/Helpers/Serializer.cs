@@ -2,16 +2,16 @@
 
 namespace Nexto.Web.Helpers
 {
-    public class Serializer
+    public static class Serializer
     {
-        public T GetObject<T>(string json)
+        public static T GetObject<T>(string json)
         {
             if (!string.IsNullOrWhiteSpace(json))
                 return JsonConvert.DeserializeObject<T>(json);
             return default(T);
         }
 
-        public string SetObject<T>(T objeto)
+        public static string SetObject<T>(T objeto)
         {
             if (objeto != null)
                 return JsonConvert.SerializeObject(objeto);

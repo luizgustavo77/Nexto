@@ -13,7 +13,7 @@ namespace Nexto.Web.Helpers
 
         public void Create<T>(string key, T objeto)
         {
-            string jsonValue = new Serializer().SetObject<T>(objeto);
+            string jsonValue = Serializer.SetObject<T>(objeto);
             _cache.SetString(key, jsonValue);
         }
         public void Create(string key, string value)
@@ -26,7 +26,7 @@ namespace Nexto.Web.Helpers
             string json = null;
             if (!string.IsNullOrWhiteSpace(key))
                 json = _cache.GetString(key);
-            return new Serializer().GetObject<T>(json);
+            return Serializer.GetObject<T>(json);
         }
 
         public string Get(string key)
