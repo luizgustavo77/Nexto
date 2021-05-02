@@ -59,10 +59,6 @@ namespace Nexto.Web.Controllers
                     Session.Create<UserDto>("usuario", login);
                     return RedirectToAction("Index", "Home");
                 }
-                else
-                {
-                    return NotFound();
-                }
             }
             catch (Exception ex)
             {
