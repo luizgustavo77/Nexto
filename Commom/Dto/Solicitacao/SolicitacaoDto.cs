@@ -9,7 +9,7 @@ namespace Commom.Dto.Solicitacao
     public class SolicitacaoDto : BaseDto
     {
         public string Sigla { get; set; }
-        public string Tipo { get; set; }
+        public int Tipo { get; set; }
 
         [DisplayName("Data de inicio")]
         public DateTime DataInicio { get; set; }

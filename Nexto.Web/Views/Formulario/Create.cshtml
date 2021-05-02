@@ -4,10 +4,11 @@
     ViewData["Title"] = "Novo";
 }
 
+
 <hr />
 <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
+    <div class="col-1"></div>
+    <div class="col-10">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -65,23 +66,45 @@
                 <textarea asp-for="DescricaoInvencao" class="form-control"> </textarea>
                 <span asp-validation-for="DescricaoInvencao" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-                <a asp-action="Index" asp-controller="Solicitacao" class="btn btn-primary">Voltar</a>
-            </div>
 
-            <div class="form-group">
-                <div class="input-group">
-                    <input id="txt_arquivo" type="text" alt="Arquivo" class="form-control" style="font-size:14px !important; width:80%; height:100%;" placeholder="Selecione um arquivo." readonly="readonly" disabled="disabled" onclick="$('#IdInputTypeFile').click();">
+            <div class="container">
+                <div class="row">
+                    <div class="form-group col-6">
+                        <select id="select_arquivo" class="form-control" style="margin-top: 5px;">
+                            <option value="">Selecione</option>
+                            @foreach (var item in new Select().Arquivo)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
 
-                    <div class="input-group-addon" onclick="$('#IdInputTypeFile').click();">
-                        <span style=" font-size: 30px;">⬇️</span>
+                    <div class="form-group col-5">
+                        <input id="txt_arquivo" type="text" alt="Arquivo" class="form-input" placeholder="Selecione um arquivo." readonly="readonly" disabled="disabled" onclick="$('#IdInputTypeFile').click();" style="width: 100%; margin-top: 5px;">
+                    </div>
+                    <div class="form-group col-1" onclick="$('#idInputTypeFile').click();" style="cursor: pointer;">
+                        <span style="font-size: 30px;">⬇️</span>
                     </div>
                 </div>
-                @*Aqui defini que só aceita PDF*@
-                <input id="IdInputTypeFile" type="file" title="Arquivos" name="files[]" multiple style="width:100%; height:100%; display: none;">
+                <div class="row">
+                    <div class="col-10"></div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-primary" onclick="formulario().salvarArquivo(); return null;">Adicionar</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="table-responsive col-12">
+                        <table id="tabela" class="table table-hover table-striped"></table>
+                    </div>
+                </div>
             </div>
 
+            <input id="idInputTypeFile" type="file" title="Arquivos" name="files[]" multiple style="width:100%; height:100%; display: none;">
+
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <a asp-action="Index" asp-controller="Solicitacao" class="btn btn-primary">Voltar</a>
+            </div>
         </form>
     </div>
 </div>
@@ -90,23 +113,4 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 
-<script>
-    $("#IdInputTypeFile").fileupload({
-        dataType: 'json',
-        url: base_path + "/Core/UploadFiles",
-        autoUpload: true,
-        done: function (e, data) {
-            debugger;
-        },
-        error: function (error) {
-            alert('Houve um erro ao tentar submeter o arquivo.');
-        }
-    });
-
-    $(document).ready(function () {
-        $("IdDivDaImagem").each(function () {
-            this.style.pointerEvents = 'none'; // para ativar so adicionar auto em vez de none
-        });
-
-    });
-</script>
+<script src="~/js/adicional/formulario.js" type="text/javascript"></script>

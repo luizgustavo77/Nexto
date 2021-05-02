@@ -24,5 +24,17 @@ namespace Commom.Dto.SelectList
             new Option(1, "Em Andamento"),
             new Option(2, "Finalizado")
         };
+
+        public List<Option> Solicitacao = new List<Option>()
+        {
+            new Option(1, "Patente de Invenção"),
+            new Option(2, "Modelo de Utilidade")
+        };
+
+        public List<Option> Arquivo = new List<Option>()
+        {
+            new Option(1, "Desenho"),
+            new Option(2, "Foto")
+        };
     }
 }

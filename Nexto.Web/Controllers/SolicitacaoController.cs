@@ -4,7 +4,9 @@ using Commom.Proxy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Nexto.Web.Helpers;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Nexto.Web.Controllers
@@ -18,7 +20,7 @@ namespace Nexto.Web.Controllers
         {
             _logger = logger;
         }
-                
+
         public async Task<IActionResult> Index()
         {
             List<SolicitacaoDto> solicitacoes = await new APISolicitacao(bool.Parse(AppSettings.Get("ambienteTeste"))).GetAll();
@@ -65,7 +67,7 @@ namespace Nexto.Web.Controllers
 
             return View(solicitacao);
         }
-                
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,7 +83,7 @@ namespace Nexto.Web.Controllers
             return View(solicitacao);
         }
 
-        [HttpPost]        
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Login,PassWord,PassWordConfirm,BirthDate,Telefone,Email,CPF,Sexo,Estado,Cidade,Perfil")] SolicitacaoDto solicitacao)
         {
@@ -98,7 +100,7 @@ namespace Nexto.Web.Controllers
             }
             return View(solicitacao);
         }
-                
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -115,12 +117,45 @@ namespace Nexto.Web.Controllers
             return View(solicitacao);
         }
 
-        [HttpPost, ActionName("Delete")]        
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await new APISolicitacao(bool.Parse(AppSettings.Get("ambienteTeste"))).Delete(id);
             return RedirectToAction(nameof(Index));
         }
-    } 
+
+        [HttpPost]
+        public async Task<JsonResult> UploadFiles()
+        {
+            IList<ArquivoDto> result = new List<ArquivoDto>();
+            try
+            {
+                foreach (var file in Request.Form.Files)
+                {
+                    if (file != null || file.ContentType.ToLower().StartsWith("image/"))
+                    {
+                        MemoryStream ms = new MemoryStream();
+                        file.OpenReadStream().CopyTo(ms);
+                        ArquivoDto arquivo = new ArquivoDto();
+                        arquivo.Nome = file.FileName;
+                        arquivo.Conteudo = ms.ToArray();
+                        arquivo.Extensao = file.ContentType;
+
+                        result.Add(arquivo);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+            }
+
+            return Json(result);
+        }
+        [HttpPost]
+        public async Task SalvarArquivo(List<ArquivoDto> arquivos, int tipo)
+        {
+            string a = "";
+        }
+    }
 }

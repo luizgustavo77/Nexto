@@ -39,7 +39,7 @@ namespace Commom.Proxy
                     Nome = "Solicitacao",
                     Sigla = "SO",
                     Status = 1,
-                    Tipo = "Mecnica",                    
+                    Tipo = 1,                    
                     Formularios = new List<FormularioDto>()
                     {
                         new FormularioDto()
@@ -93,7 +93,7 @@ namespace Commom.Proxy
                     Nome = "Solicitacao1",
                     Sigla = "SO1",
                     Status = 1,
-                    Tipo = "Mecnica1",
+                    Tipo = 1,
                     Formularios = new List<FormularioDto>()
                     {
                         new FormularioDto()
@@ -137,7 +137,7 @@ namespace Commom.Proxy
                     Nome = "Solicitacao2",
                     Sigla = "SO2",
                     Status = 1,
-                    Tipo = "Mecnica2",
+                    Tipo = 1,
                     Formularios = new List<FormularioDto>()
                     {
                         new FormularioDto()

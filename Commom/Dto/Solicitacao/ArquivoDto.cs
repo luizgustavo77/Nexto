@@ -8,5 +8,6 @@ namespace Commom.Dto.Solicitacao
     {
         public byte[] Conteudo { get; set; }
         public string Extensao { get; set; }
+        public int Tipo { get; set; }
     }
 }

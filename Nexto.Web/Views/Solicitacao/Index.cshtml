@@ -43,7 +43,7 @@
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Tipo)
+                    @Html.DisplayFor(modelItem => new Select().Solicitacao.FirstOrDefault(x => x.Id == item.Tipo).Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DataInicio)

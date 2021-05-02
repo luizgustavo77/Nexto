@@ -247,9 +247,6 @@ a {
             padding-bottom: 10px;
         }
 
-    .resume .resume-item:last-child {
-        padding-bottom: 0;
-    }
 
     .resume .resume-item::before {
         content: "";
@@ -265,4 +262,18 @@ a {
 
 .resume-hover div:hover {
     border: 2px solid #1f5297;
+}
+
+.form-input {
+    width: 80%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
