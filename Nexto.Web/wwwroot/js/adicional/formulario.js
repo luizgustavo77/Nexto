@@ -55,6 +55,7 @@ var formulario = function () {
                     cache: false,
                 }).done(function (data) {
                     for (var i = 0; i < arquivos.length; i++) {
+                        arquivos[i].id = -1* (lista.length + 1);
                         arquivos[i].conteudo = '';
                         arquivos[i].tipo = tipo;
                         adicionar(arquivos[i]);
@@ -91,10 +92,9 @@ var formulario = function () {
 
                 $.ajax({
                     type: "POST",
-                    url: base_path + "/Solicitacao/ApagarArquivo",
+                    url: base_path + "/Solicitacao/DeletarArquivo",
                     data: {
-                        arquivos: arquivos,
-                        tipo: $(controles().select_arquivo + ' :selected').val()
+                        id: lista[i].id
                     },
                     cache: false,
                 }).done(function (data) {
@@ -113,7 +113,7 @@ var formulario = function () {
 
         $.ajax({
             type: "POST",
-            url: base_path + "/Solicitacao/PesquisarArquivos",
+            url: base_path + "/Solicitacao/GetArquivos",
             data: {
                 'dto': getFiltros()
             },

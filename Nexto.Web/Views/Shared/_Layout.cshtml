@@ -13,15 +13,15 @@
     <script src="~/lib/jquery/dist/jquery.fileupload.js"></script>
     <script src="~/lib/jquery-data-tables/js/jquery.dataTables.js"></script>
     <script src="~/lib/jquery-data-tables/js/dataTables.bootstrap.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>    
+    <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    
+
     <script type="text/javascript">
         var base_path = '@Url.Content("~")';
     </script>
     @RenderSection("Scripts", required: false)
 
-    @*CSS*@    
+    @*CSS*@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/jquery-data-tables/css/dataTables.bootstrap.css" />
@@ -31,6 +31,7 @@
 
 </head>
 <body>
+    @(new Commom.Proxy.APISelect(false).Iniciar())
     <div id="modal" class="modal">
         <div style="text-align: center;">
             <h2>Carregando</h2>
@@ -98,7 +99,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container text-center">
-            &copy; 2021 - Nexto 
+            &copy; 2021 - Nexto
         </div>
     </footer>
 </body>

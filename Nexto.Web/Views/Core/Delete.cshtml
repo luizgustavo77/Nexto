@@ -53,7 +53,7 @@
             @Html.DisplayNameFor(model => model.Sexo)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => new Select().Sexo.FirstOrDefault(x => x.Id == model.Sexo).Name)
+            @Html.DisplayFor(model => Select.Sexo.FirstOrDefault(x => x.Id == model.Sexo).Descricao)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Estado)
@@ -71,7 +71,7 @@
             @Html.DisplayNameFor(model => model.Perfil)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => new Select().Perfil.FirstOrDefault(x => x.Id == model.Perfil).Name)
+            @Html.DisplayFor(model => Select.Perfil.FirstOrDefault(x => x.Id == model.Perfil).Descricao)
         </dd>
     </dl>
 

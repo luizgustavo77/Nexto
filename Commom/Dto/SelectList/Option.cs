@@ -7,12 +7,12 @@ namespace Commom.Dto.SelectList
     public class Option
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Descricao { get; set; }
 
         public Option(int id, string name)
         {
             Id = id;
-            Name = name;
+            Descricao = name;
         }
     }
 }

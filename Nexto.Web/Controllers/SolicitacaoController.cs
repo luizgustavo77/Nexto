@@ -152,10 +152,22 @@ namespace Nexto.Web.Controllers
 
             return Json(result);
         }
+
         [HttpPost]
         public async Task SalvarArquivo(List<ArquivoDto> arquivos, int tipo)
         {
-            string a = "";
+            foreach (var item in arquivos)
+            {
+                item.Tipo = tipo;
+            }
+
+            new APISolicitacao(bool.Parse(AppSettings.Get("ambienteTeste"))).AddArquivos(arquivos);
+        }
+
+        [HttpPost]
+        public async Task DeletarArquivo(int? id)
+        {
+            await new APISolicitacao(bool.Parse(AppSettings.Get("ambienteTeste"))).DeleteArquivo(id.Value);
         }
     }
 }

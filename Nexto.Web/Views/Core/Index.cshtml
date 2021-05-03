@@ -64,9 +64,9 @@
                     <label for="Sexo" class="control-label">Sexo</label>
                     <select name="Sexo" class="form-control">
                         <option value="">Selecione</option>
-                        @foreach (var item in new Select().Sexo)
+                        @foreach (var item in Select.Sexo)
                         {
-                            <option value="@item.Id">@item.Name</option>
+                            <option value="@item.Id">@item.Descricao</option>
                         }
                     </select>
                     <span for="Sexo" class="text-danger"></span>
@@ -85,9 +85,9 @@
                     <label for="Perfil" class="control-label">Perfil</label>
                     <select name="Perfil" class="form-control">
                         <option value="">Selecione</option>
-                        @foreach (var item in new Select().Perfil)
+                        @foreach (var item in Select.Perfil)
                         {
-                            <option value="@item.Id">@item.Name</option>
+                            <option value="@item.Id">@item.Descricao</option>
                         }
                     </select>
                     <span for="Perfil" class="text-danger"></span>
@@ -177,7 +177,7 @@
             @Html.DisplayFor(modelItem => item.Cidade)
         </td>*@
     <td>
-        @Html.DisplayFor(modelItem => new Select().Perfil.FirstOrDefault(x => x.Id == item.Perfil).Name)
+        @Html.DisplayFor(modelItem => Select.Perfil.FirstOrDefault(x => x.Id == item.Perfil).Descricao)
     </td>
     <td>
         <a asp-action="Edit" asp-route-id="@item.Id">🖋️</a> |

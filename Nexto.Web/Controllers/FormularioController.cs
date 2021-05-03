@@ -19,12 +19,6 @@ namespace Nexto.Web.Controllers
             _logger = logger;
         }
 
-        //public async Task<IActionResult> Index()
-        //{
-        //    List<FormularioDto> formularios = await new APIFormulario(bool.Parse(AppSettings.Get("ambienteTeste"))).GetAll();
-
-        //    return View(formularios);
-        //}
         public IActionResult Create()
         {
             return View();
@@ -66,39 +60,6 @@ namespace Nexto.Web.Controllers
             return View(formulario);
         }
 
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var formulario = await new APIFormulario(bool.Parse(AppSettings.Get("ambienteTeste"))).Find(id.Value);
-        //    if (formulario == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(formulario);
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Login,PassWord,PassWordConfirm,BirthDate,Telefone,Email,CPF,Sexo,Estado,Cidade,Perfil")] FormularioDto formulario)
-        //{
-        //    if (id != formulario.Id)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        await new APIFormulario(bool.Parse(AppSettings.Get("ambienteTeste"))).Edit(formulario);
-
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(formulario);
-        //}
-
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -121,6 +82,6 @@ namespace Nexto.Web.Controllers
         {
             await new APIFormulario(bool.Parse(AppSettings.Get("ambienteTeste"))).Delete(id);
             return RedirectToAction(nameof(Index));
-        }               
+        }
     }
 }

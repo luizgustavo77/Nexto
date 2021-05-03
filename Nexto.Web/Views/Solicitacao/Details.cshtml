@@ -23,7 +23,7 @@
             @Html.DisplayNameFor(model => model.Tipo)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => new Select().Solicitacao.FirstOrDefault(x => x.Id == model.Tipo).Name)
+            @Html.DisplayFor(model => Select.Solicitacao.FirstOrDefault(x => x.Id == model.Tipo).Descricao)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DataInicio)
@@ -41,7 +41,7 @@
             @Html.DisplayNameFor(model => model.Status)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => new Select().Status.FirstOrDefault(x => x.Id == model.Status).Name)
+            @Html.DisplayFor(model => Select.Status.FirstOrDefault(x => x.Id == model.Status).Descricao)
         </dd>
     </dl>
 </div>

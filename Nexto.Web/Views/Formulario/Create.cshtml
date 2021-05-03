@@ -72,9 +72,9 @@
                     <div class="form-group col-6">
                         <select id="select_arquivo" class="form-control" style="margin-top: 5px;">
                             <option value="">Selecione</option>
-                            @foreach (var item in new Select().Arquivo)
+                            @foreach (var item in Select.Arquivo)
                             {
-                                <option value="@item.Id">@item.Name</option>
+                                <option value="@item.Id">@item.Descricao</option>
                             }
                         </select>
                     </div>

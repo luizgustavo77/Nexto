@@ -24,9 +24,9 @@
                 <label asp-for="Tipo" class="control-label"></label>
                 <select asp-for="Tipo" class="form-control">
                     <option value="">Selecione</option>
-                    @foreach (var item in new Select().Solicitacao)
+                    @foreach (var item in Select.Solicitacao)
                     {
-                        <option value="@item.Id">@item.Name</option>
+                        <option value="@item.Id">@item.Descricao</option>
                     }
                 </select>
             </div>

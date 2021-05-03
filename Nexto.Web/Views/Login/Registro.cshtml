@@ -57,9 +57,9 @@
         <label asp-for="Sexo" class="control-label"></label>
         <select asp-for="Sexo" class="form-control">
             <option value="">Selecione</option>
-            @foreach (var item in new Select().Sexo)
+            @foreach (var item in Select.Sexo)
             {
-                <option value="@item.Id">@item.Name</option>
+                <option value="@item.Id">@item.Descricao</option>
             }
         </select>
         <span asp-validation-for="Sexo" class="text-danger"></span>

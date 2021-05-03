@@ -1,7 +1,9 @@
-﻿using Commom.Dto.Core;
+﻿using Commom.Dto;
+using Commom.Dto.Core;
 using Commom.Dto.Solicitacao;
 using System;
 using System.Collections.Generic;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace Commom.Proxy
@@ -13,6 +15,51 @@ namespace Commom.Proxy
             _ambienteTeste = ambienteTeste;
             _BaseUrl = "https://localhost:44347";
             _baseEndpoint = "API/Solicitacao";
+        }
+
+        public async Task<RetornaAcaoDto> AddArquivos(List<ArquivoDto> arquivos)
+        {
+            RetornaAcaoDto retorna = new RetornaAcaoDto();
+            try
+            {
+                var result = await Http.PostAsJsonAsync<List<ArquivoDto>>(_BaseUrl + "/" + _baseEndpoint, arquivos);
+                try
+                {
+                    if (!_ambienteTeste)
+                        retorna = await result.Content.ReadFromJsonAsync<RetornaAcaoDto>();
+                    else
+                        retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
+                }
+                catch (Exception)
+                {
+
+                }
+
+                return retorna;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public virtual async Task<RetornaAcaoDto> DeleteArquivo(int Id)
+        {
+            RetornaAcaoDto retorna = new RetornaAcaoDto();
+            var result = await Http.DeleteAsync(_BaseUrl + "/" + _baseEndpoint + "/" + Id.ToString());
+            try
+            {
+                if (!_ambienteTeste)
+                    retorna = await result.Content.ReadFromJsonAsync<RetornaAcaoDto>();
+                else
+                    retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
+            }
+            catch (Exception)
+            {
+
+            }
+            return retorna;
         }
 
         public override Task<SolicitacaoDto> Find(int Id)

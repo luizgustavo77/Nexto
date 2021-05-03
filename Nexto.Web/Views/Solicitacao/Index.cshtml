@@ -43,7 +43,7 @@
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => new Select().Solicitacao.FirstOrDefault(x => x.Id == item.Tipo).Name)
+                    @Html.DisplayFor(modelItem => Select.Solicitacao.FirstOrDefault(x => x.Id == item.Tipo).Descricao)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DataInicio)
@@ -52,7 +52,7 @@
                     @Html.DisplayFor(modelItem => item.DataFim)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => new Select().Status.FirstOrDefault(x => x.Id == item.Status).Name)
+                    @Html.DisplayFor(modelItem => Select.Status.FirstOrDefault(x => x.Id == item.Status).Descricao)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">🖋️</a> |
