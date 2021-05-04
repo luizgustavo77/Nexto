@@ -36,7 +36,6 @@ namespace Commom.Dto.Core
 
         [Required(ErrorMessage = "Campo obrigatório!")]
         [DisplayName("CPF")]
-        public string CPF { get; set; }
         public string Cpf { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório!")]
