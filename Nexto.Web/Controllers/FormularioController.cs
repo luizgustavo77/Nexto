@@ -1,4 +1,5 @@
 ﻿using Commom.Dto;
+using Commom.Dto.SelectList;
 using Commom.Dto.Solicitacao;
 using Commom.Proxy;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,7 @@ namespace Nexto.Web.Controllers
         public FormularioController(ILogger<FormularioController> logger)
         {
             _logger = logger;
+            new Select().CarregaDados();
         }
 
         public IActionResult Create()

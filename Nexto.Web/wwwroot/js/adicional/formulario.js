@@ -37,7 +37,7 @@ var formulario = function () {
     }
 
     var addArquivo = function (result) {
-        arquivos = result;
+        arquivos.push(result[0]);
         $(controles().txt_arquivo).val("Arquivos adicionados.");
     }
 
@@ -55,7 +55,7 @@ var formulario = function () {
                     cache: false,
                 }).done(function (data) {
                     for (var i = 0; i < arquivos.length; i++) {
-                        arquivos[i].id = -1* (lista.length + 1);
+                        arquivos[i].id = -1 * (lista.length + 1);
                         arquivos[i].conteudo = '';
                         arquivos[i].tipo = tipo;
                         adicionar(arquivos[i]);

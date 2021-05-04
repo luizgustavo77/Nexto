@@ -14,5 +14,7 @@ namespace Commom.Dto.SelectList
             Id = id;
             Descricao = name;
         }
+
+        public Option() { }
     }
 }

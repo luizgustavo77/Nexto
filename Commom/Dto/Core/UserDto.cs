@@ -11,15 +11,15 @@ namespace Commom.Dto.Core
     {
         [Required(ErrorMessage = "Campo obrigatório!")]
         [DisplayName("Usuário")]
-        public string Login { get; set; }
+        public string Usuario { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório!")]
         [DisplayName("Senha")]
-        public string PassWord { get; set; }
+        public string Senha { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório!")]
         [DisplayName("Confirmar a senha")]
-        public string PassWordConfirm { get; set; }
+        public string SenhaConfirm { get; set; }
         //--
         [Required(ErrorMessage = "Campo obrigatório!")]
         [DisplayName("Data de nascimento")]
@@ -37,6 +37,7 @@ namespace Commom.Dto.Core
         [Required(ErrorMessage = "Campo obrigatório!")]
         [DisplayName("CPF")]
         public string CPF { get; set; }
+        public string Cpf { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório!")]
         [DisplayName("Sexo")]

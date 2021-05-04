@@ -1,5 +1,6 @@
 ﻿using Commom.Dto;
 using Commom.Dto.Core;
+using Commom.Dto.SelectList;
 using Commom.Proxy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -17,6 +18,7 @@ namespace Nexto.Web.Controllers
         public CoreController(ILogger<CoreController> logger)
         {
             _logger = logger;
+            new Select().CarregaDados();
         }
 
         public async Task<IActionResult> Index()
@@ -30,7 +32,7 @@ namespace Nexto.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome,Login,PassWord,PassWordConfirm,BirthDate,Telefone,Email,CPF,Sexo,Estado,Cidade,Perfil")] UserDto user)
         {
-            if (user == null || string.IsNullOrEmpty(user.PassWord) || !user.PassWord.Equals(user.PassWordConfirm))
+            if (user == null || string.IsNullOrEmpty(user.Senha) || !user.Senha.Equals(user.SenhaConfirm))
             {
                 ModelState.AddModelError("PassWordConfirm", "Senhas diferentes!");
             }

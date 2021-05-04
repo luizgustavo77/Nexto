@@ -13,8 +13,8 @@ namespace Commom.Proxy
         public APISolicitacao(bool ambienteTeste)
         {
             _ambienteTeste = ambienteTeste;
-            _BaseUrl = "https://localhost:44347";
-            _baseEndpoint = "API/Solicitacao";
+            _BaseUrl = "http://nextoapiapp.azurewebsites.net/";
+            _baseEndpoint = "api/solicitacao";
         }
 
         public async Task<RetornaAcaoDto> AddArquivos(List<ArquivoDto> arquivos)

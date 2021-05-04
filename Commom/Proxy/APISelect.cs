@@ -1,6 +1,4 @@
-﻿using Commom.Dto;
-using Commom.Dto.Core;
-using Commom.Dto.SelectList;
+﻿using Commom.Dto.SelectList;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -26,10 +24,11 @@ namespace Commom.Proxy
 
         public async Task Iniciar()
         {
-            if (Select.Perfil == null || Select.Perfil.Count == 0)
-            {
-                Select.Perfil = await GetPerfil();
-            }
+            Select.Perfil = await GetPerfil();
+            Select.Sexo = await GetSexo();
+            Select.Status = await GetStatus();
+            Select.Solicitacao = await GetSolicitacao();
+            Select.Arquivo = await GetArquivo();
         }
 
         public async Task<List<Option>> GetPerfil()
@@ -38,13 +37,120 @@ namespace Commom.Proxy
             try
             {
                 if (!_ambienteTeste)
+                {
                     result = await Http.GetFromJsonAsync<List<Option>>(_BaseUrl + _baseEndpoint + "perfil/");
+                }
                 else
                 {
                     result = new List<Option>()
                     {
                         new Option(1, "Cliente"),
                         new Option(2, "Colaborador")
+                    };
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<List<Option>> GetSexo()
+        {
+            List<Option> result = new List<Option>();
+            try
+            {
+                if (false/*!_ambienteTeste*/)
+                {
+                    result = await Http.GetFromJsonAsync<List<Option>>(_BaseUrl + _baseEndpoint + "sexo/");
+                }
+                else
+                {
+                    result = new List<Option>()
+                    {
+                        new Option(1, "Masculino"),
+                        new Option(2, "Feminino"),
+                        new Option(3, "Outros")
+                    };
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<List<Option>> GetStatus()
+        {
+            List<Option> result = new List<Option>();
+            try
+            {
+                if (false/*!_ambienteTeste*/)
+                {
+                    result = await Http.GetFromJsonAsync<List<Option>>(_BaseUrl + _baseEndpoint + "status/");
+                }
+                else
+                {
+                    result = new List<Option>()
+                    {
+                        new Option(1, "Em Andamento"),
+                        new Option(2, "Finalizado")
+                    };
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<List<Option>> GetSolicitacao()
+        {
+            List<Option> result = new List<Option>();
+            try
+            {
+                if (false/*!_ambienteTeste*/)
+                {
+                    result = await Http.GetFromJsonAsync<List<Option>>(_BaseUrl + _baseEndpoint + "solicitacao/");
+                }
+                else
+                {
+                    result = new List<Option>()
+                    {
+                        new Option(1, "Patente de Invenção"),
+                        new Option(2, "Modelo de Utilidade")
+                    };
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<List<Option>> GetArquivo()
+        {
+            List<Option> result = new List<Option>();
+            try
+            {
+                if (false/*!_ambienteTeste*/)
+                {
+                    result = await Http.GetFromJsonAsync<List<Option>>(_BaseUrl + _baseEndpoint + "arquivo/");
+                }
+                else
+                {
+                    result = new List<Option>()
+                    {
+                        new Option(1, "Desenho"),
+                        new Option(2, "Foto")
                     };
                 }
 

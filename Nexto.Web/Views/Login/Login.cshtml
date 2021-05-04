@@ -1,7 +1,7 @@
 ﻿@model UserDto
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Login";
 }
 
 <h1>Olá!</h1>
@@ -16,14 +16,14 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <br />
-        <label asp-for="Login" class="control-label"></label>
-        <input asp-for="Login" class="form-control" />
-        <span asp-validation-for="Login" class="text-danger"></span>
+        <label asp-for="Usuario" class="control-label"></label>
+        <input asp-for="Usuario" class="form-control" />
+        <span asp-validation-for="Usuario" class="text-danger"></span>
 
         <br />
-        <label asp-for="PassWord" class="control-label"></label>
-        <input asp-for="PassWord" type="password" class="form-control" />
-        <span asp-validation-for="PassWord" class="text-danger"></span>
+        <label asp-for="Senha" class="control-label"></label>
+        <input asp-for="Senha" type="password" class="form-control" />
+        <span asp-validation-for="Senha" class="text-danger"></span>
 
         <br />
         <button type="submit" value="Criar" class="btn btn-lg btn-primary btn-block"> Login </button>

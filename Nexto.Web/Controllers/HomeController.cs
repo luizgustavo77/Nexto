@@ -1,11 +1,7 @@
-﻿using Nexto.Web.Models;
+﻿using Commom.Dto.SelectList;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using Nexto.Web.Models;
 
 namespace Nexto.Web.Controllers
 {
@@ -16,6 +12,7 @@ namespace Nexto.Web.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            new Select().CarregaDados();
         }
 
         public IActionResult Index()

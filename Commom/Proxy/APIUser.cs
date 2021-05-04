@@ -12,23 +12,26 @@ namespace Commom.Proxy
         public APIUser(bool ambienteTeste)
         {
             _ambienteTeste = ambienteTeste;
-            _BaseUrl = "https://localhost:44347";
-            _baseEndpoint = "API/User";
+            _BaseUrl = "http://nextoapiapp.azurewebsites.net/";
+            _baseEndpoint = "api/usuario";
         }
 
-        public async Task<UserDto> Login(UserDto Item)
+        public async Task<UserDto> Login(UserDto item)
         {
             UserDto user = new UserDto();
             try
             {
                 if (!_ambienteTeste)
-                    user = await Http.GetFromJsonAsync<UserDto>(_BaseUrl + "/" + _baseEndpoint + "/Login/" + Item.Login + "/" + Item.PassWord);
-                else if (Item != null && Item.Login.Equals("Admin") && Item.PassWord.Equals("nota10"))
                 {
-                    Item.Perfil = 2;
-                    Item.Id = 1;
-                    Item.Nome = "Administrador Teste";
-                    user = Item;
+                    var result = await Http.PostAsJsonAsync<UserDto>(_BaseUrl + _baseEndpoint + "/autenticar", item);
+                    var list = await result.Content.ReadFromJsonAsync<List<UserDto>>();
+                }
+                else if (item != null && item.Usuario.Equals("Admin") && item.Senha.Equals("nota10"))
+                {
+                    item.Perfil = 2;
+                    item.Id = 1;
+                    item.Nome = "Administrador Teste";
+                    user = item;
                 }
 
                 return user;
@@ -50,12 +53,12 @@ namespace Commom.Proxy
                     BirthDate = DateTime.Now,
                     Cidade = "Santo André",
                     Estado = "São Paulo",
-                    CPF = "123.123.123.-23",
+                    Cpf = "123.123.123.-23",
                     Email = "email@hotmail.com",
                     Id = 1,
-                    Login = "Teste",
+                    Usuario = "Teste",
                     Nome = "Teste",
-                    PassWord = "Senha",
+                    Senha = "Senha",
                     Perfil = 2,
                     Sexo = 3,
                     Telefone = "(11) 98888-8888"
@@ -77,12 +80,12 @@ namespace Commom.Proxy
                     BirthDate = DateTime.Now,
                     Cidade = "Santo André1",
                     Estado = "São Paulo1",
-                    CPF = "123.123.123.-21",
+                    Cpf = "123.123.123.-21",
                     Email = "email@hotmail.com1",
                     Id = 1,
-                    Login = "Teste1",
+                    Usuario = "Teste1",
                     Nome = "Teste1",
-                    PassWord = "Senha1",
+                    Senha = "Senha1",
                     Perfil = 2,
                     Sexo = 3,
                     Telefone = "(11) 98888-8881"
@@ -93,12 +96,12 @@ namespace Commom.Proxy
                     BirthDate = DateTime.Now,
                     Cidade = "Santo André2",
                     Estado = "São Paulo2",
-                    CPF = "123.123.123.-22",
+                    Cpf = "123.123.123.-22",
                     Email = "email@hotmail.com2",
                     Id = 2,
-                    Login = "Teste2",
+                    Usuario = "Teste2",
                     Nome = "Teste2",
-                    PassWord = "Senha2",
+                    Senha = "Senha2",
                     Perfil = 2,
                     Sexo = 3,
                     Telefone = "(11) 98888-8882"
@@ -109,12 +112,12 @@ namespace Commom.Proxy
                     BirthDate = DateTime.Now,
                     Cidade = "Santo André3",
                     Estado = "São Paulo3",
-                    CPF = "123.123.123.-23",
+                    Cpf = "123.123.123.-23",
                     Email = "email@hotmail.com3",
                     Id = 3,
-                    Login = "Teste3",
+                    Usuario = "Teste3",
                     Nome = "Teste3",
-                    PassWord = "Senha3",
+                    Senha = "Senha3",
                     Perfil = 2,
                     Sexo = 3,
                     Telefone = "(11) 98888-8883"
