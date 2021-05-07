@@ -36,7 +36,7 @@ namespace Nexto.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Login,PassWord,PassWordConfirm,BirthDate,Telefone,Email,CPF,Sexo,Estado,Cidade,Perfil")] SolicitacaoDto solicitacao)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Sigla,Tipo,DataInicio,DataFim,Cliente,Colaborador,Status,Formularios")] SolicitacaoDto solicitacao)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace Nexto.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Login,PassWord,PassWordConfirm,BirthDate,Telefone,Email,CPF,Sexo,Estado,Cidade,Perfil")] SolicitacaoDto solicitacao)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Sigla,Tipo,DataInicio,DataFim,Cliente,Colaborador,Status,Formularios")] SolicitacaoDto solicitacao)
         {
             if (id != solicitacao.Id)
             {
@@ -163,13 +163,13 @@ namespace Nexto.Web.Controllers
                 item.Tipo = tipo;
             }
 
-            new APISolicitacao(bool.Parse(AppSettings.Get("ambienteTeste"))).AddArquivos(arquivos);
+            new APISolicitacao(false).AddArquivos(arquivos);
         }
 
         [HttpPost]
         public async Task DeletarArquivo(int? id)
         {
-            await new APISolicitacao(bool.Parse(AppSettings.Get("ambienteTeste"))).DeleteArquivo(id.Value);
+            await new APISolicitacao(false).DeleteArquivo(id.Value);
         }
     }
 }

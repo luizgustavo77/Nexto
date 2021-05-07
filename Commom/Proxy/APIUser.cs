@@ -1,8 +1,10 @@
 ﻿using Commom.Dto;
 using Commom.Dto.Core;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Net.Http.Json;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Commom.Proxy
@@ -13,7 +15,13 @@ namespace Commom.Proxy
         {
             _ambienteTeste = ambienteTeste;
             _BaseUrl = "http://nextoapiapp.azurewebsites.net/";
-            _baseEndpoint = "api/usuario";
+            _baseEndpoint = "api/usuario/";
+        }
+
+        public override Task<RetornaAcaoDto> Add(UserDto Item)
+        {
+            _baseEndpoint += "registrar/";
+            return base.Add(Item);
         }
 
         public async Task<UserDto> Login(UserDto item)
@@ -23,8 +31,16 @@ namespace Commom.Proxy
             {
                 if (!_ambienteTeste)
                 {
-                    var result = await Http.PostAsJsonAsync<UserDto>(_BaseUrl + _baseEndpoint + "/autenticar", item);
-                    var list = await result.Content.ReadFromJsonAsync<List<UserDto>>();
+                    using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, _BaseUrl + _baseEndpoint + "autenticar/"))
+                    {
+                        if (item != null)
+                        {
+                            string contentToSend = JsonConvert.SerializeObject(item);
+                            request.Content = new StringContent(contentToSend, Encoding.UTF8, "application/json");
+                        }
+                        var result = await Http.SendAsync(request);
+                        user = JsonConvert.DeserializeObject<UserDto>(await result.Content.ReadAsStringAsync());
+                    }
                 }
                 else if (item != null && item.Usuario.Equals("Admin") && item.Senha.Equals("nota10"))
                 {

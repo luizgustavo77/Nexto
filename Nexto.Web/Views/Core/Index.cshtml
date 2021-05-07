@@ -26,19 +26,19 @@
                     <span for="Nome" class="text-danger"></span>
 
                     <br />
-                    <label for="Login" class="control-label">Login</label>
-                    <input name="Login" class="form-control" />
-                    <span for="Login" class="text-danger"></span>
+                    <label for="Usuario" class="control-label">Login</label>
+                    <input name="Usuario" class="form-control" />
+                    <span for="Usuario" class="text-danger"></span>
 
                     <br />
-                    <label for="PassWord" class="control-label">Password</label>
-                    <input name="PassWord" type="password" class="form-control" />
-                    <span for="PassWord" class="text-danger"></span>
+                    <label for="Senha" class="control-label">Senha</label>
+                    <input name="Senha" type="password" class="form-control" />
+                    <span for="Senha" class="text-danger"></span>
 
                     <br />
-                    <label for="PassWordConfirm" class="control-label">PassWordConfirm</label>
-                    <input name="PassWordConfirm" type="password" class="form-control" />
-                    <span for="PassWordConfirm" class="text-danger"></span>
+                    <label for="SenhaConfirm" class="control-label">Confirme Senha</label>
+                    <input name="SenhaConfirm" type="password" class="form-control" />
+                    <span for="SenhaConfirm" class="text-danger"></span>
 
                     <br />
                     <label for="BirthDate" class="control-label">Nascimento</label>
@@ -56,9 +56,9 @@
                     <span for="Email" class="text-danger"></span>
 
                     <br />
-                    <label for="CPF" class="control-label">CPF</label>
-                    <input name="CPF" class="form-control cpf" />
-                    <span for="CPF" class="text-danger"></span>
+                    <label for="Cpf" class="control-label">CPF</label>
+                    <input name="Cpf" class="form-control cpf" />
+                    <span for="Cpf" class="text-danger"></span>
 
                     <br />
                     <label for="Sexo" class="control-label">Sexo</label>
@@ -143,47 +143,51 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @if (Model != null)
         {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Nome)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Usuario)
-    </td>
-    @*<td>
-            @Html.DisplayFor(modelItem => item.PassWord)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BirthDate)
-        </td>*@
-    <td>
-        @Html.DisplayFor(modelItem => item.Telefone)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Email)
-    </td>
-    @*<td>
-            @Html.DisplayFor(modelItem => item.CPF)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sexo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cidade)
-        </td>*@
-    <td>
-        @Html.DisplayFor(modelItem => Select.Perfil.FirstOrDefault(x => x.Id == item.Perfil).Descricao)
-    </td>
-    <td>
-        <a asp-action="Edit" asp-route-id="@item.Id">🖋️</a> |
-        <a asp-action="Details" asp-route-id="@item.Id">📄</a> |
-        <a asp-action="Delete" asp-route-id="@item.Id">🗑️</a>
-    </td>
-</tr>}
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.PassWord)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BirthDate)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.CPF)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sexo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Estado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cidade)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => Select.Perfil.FirstOrDefault(x => x.Id == item.Perfil).Descricao)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">🖋️</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">📄</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">🗑️</a>
+                    </td>
+                </tr>
+}
+        }
     </tbody>
 </table>

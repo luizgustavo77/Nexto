@@ -30,7 +30,7 @@ namespace Nexto.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Login,PassWord,PassWordConfirm,BirthDate,Telefone,Email,CPF,Sexo,Estado,Cidade,Perfil")] UserDto user)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Usuario,Senha,SenhaConfirm,BirthDate,Telefone,Email,Cpf,Sexo,Estado,Cidade,Perfil")] UserDto user)
         {
             if (user == null || string.IsNullOrEmpty(user.Senha) || !user.Senha.Equals(user.SenhaConfirm))
             {
@@ -39,8 +39,6 @@ namespace Nexto.Web.Controllers
 
             else if (ModelState.IsValid)
             {
-                //user.Id = Guid.NewGuid();
-                user.Perfil = 1;
                 RetornaAcaoDto result = await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).Add(user);
                 if (result.Retorno)
                 {
@@ -48,7 +46,7 @@ namespace Nexto.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("Login", result.Mensagem);
+                    ModelState.AddModelError("Nome", result.Mensagem);
                 }
             }
             return View(user);
@@ -87,7 +85,7 @@ namespace Nexto.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Login,PassWord,PassWordConfirm,BirthDate,Telefone,Email,CPF,Sexo,Estado,Cidade,Perfil")] UserDto user)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Usuario,Senha,SenhaConfirm,BirthDate,Telefone,Email,Cpf,Sexo,Estado,Cidade,Perfil")] UserDto user)
         {
             if (id != user.Id)
             {

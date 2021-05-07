@@ -5,6 +5,8 @@ using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace Commom.Proxy
 {
@@ -34,18 +36,20 @@ namespace Commom.Proxy
             RetornaAcaoDto retorna = new RetornaAcaoDto();
             try
             {
-                var result = await Http.PostAsJsonAsync<TInterface>(_BaseUrl + "/" + _baseEndpoint, Item);
-                try
+                if (!_ambienteTeste)
                 {
-                    if (!_ambienteTeste)
-                        retorna = await result.Content.ReadFromJsonAsync<RetornaAcaoDto>();
-                    else
-                        retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
-                }
-                catch (Exception)
-                {
+                    using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, _BaseUrl + _baseEndpoint))
+                    {
+                        string contentToSend = JsonConvert.SerializeObject(Item);
+                        request.Content = new StringContent(contentToSend, Encoding.UTF8, "application/json");
+                        var requestReturn = await Http.SendAsync(request);
 
+                        if (requestReturn.IsSuccessStatusCode)
+                            retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
+                    }
                 }
+                else
+                    retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
 
                 return retorna;
 
@@ -61,24 +65,23 @@ namespace Commom.Proxy
             RetornaAcaoDto retorna = new RetornaAcaoDto();
             try
             {
-                var result = await Http.PutAsJsonAsync<TInterface>(_BaseUrl + "/" + _baseEndpoint, Item);
-
-                try
+                if (!_ambienteTeste)
                 {
-                    if (!_ambienteTeste)
-                        retorna = await result.Content.ReadFromJsonAsync<RetornaAcaoDto>();
-                    else
-                        retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
-                }
-                catch (Exception)
-                {
+                    using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, _BaseUrl + _baseEndpoint))
+                    {
+                        string contentToSend = JsonConvert.SerializeObject(Item);
+                        request.Content = new StringContent(contentToSend, Encoding.UTF8, "application/json");
+                        var requestReturn = await Http.SendAsync(request);
 
+                        if (requestReturn.IsSuccessStatusCode)
+                            retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
+                    }
                 }
-
+                else
+                    retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
 
@@ -89,11 +92,20 @@ namespace Commom.Proxy
         public virtual async Task<RetornaAcaoDto> Delete(int Id)
         {
             RetornaAcaoDto retorna = new RetornaAcaoDto();
-            var result = await Http.DeleteAsync(_BaseUrl + "/" + _baseEndpoint + "/" + Id.ToString());
             try
             {
                 if (!_ambienteTeste)
-                    retorna = await result.Content.ReadFromJsonAsync<RetornaAcaoDto>();
+                {
+                    using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, _BaseUrl + _baseEndpoint))
+                    {
+                        string contentToSend = JsonConvert.SerializeObject(Id);
+                        request.Content = new StringContent(contentToSend, Encoding.UTF8, "application/json");
+                        var requestReturn = await Http.SendAsync(request);
+
+                        if (requestReturn.IsSuccessStatusCode)
+                            retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
+                    }
+                }
                 else
                     retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
             }
@@ -107,20 +119,52 @@ namespace Commom.Proxy
 
         public virtual async Task<TInterface> Find(int Id)
         {
-            var item = await Http.GetFromJsonAsync<TInterface>(_BaseUrl + "/" + _baseEndpoint + "/" + Id.ToString());
-            return item;
+            try
+            {
+                if (!_ambienteTeste)
+                {
+                    using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, _BaseUrl + _baseEndpoint + Id.ToString()))
+                    {
+                        var requestReturn = await Http.SendAsync(request);
+                        string str =
+                            await requestReturn.Content.ReadAsStringAsync();
+                        return JsonConvert.DeserializeObject<TInterface>(str);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return null;
         }
 
         public virtual async Task<List<TInterface>> GetAll()
         {
-            var list = await Http.GetFromJsonAsync<List<TInterface>>(_BaseUrl + "/" + _baseEndpoint);
-            return list;
+            try
+            {
+                if (!_ambienteTeste)
+                {
+                    using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, _BaseUrl + _baseEndpoint))
+                    {
+                        var requestReturn = await Http.SendAsync(request);
+                        string str =
+                            await requestReturn.Content.ReadAsStringAsync();
+                        return JsonConvert.DeserializeObject<List<TInterface>>(str);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return null;
         }
 
 
         public virtual async Task<List<TInterface>> ByParentId(int Id)
         {
-            var list = await Http.GetFromJsonAsync<List<TInterface>>(_BaseUrl + "/" + _baseEndpoint + "/ByParentId/" + Id.ToString());
+            var list = await Http.GetFromJsonAsync<List<TInterface>>(_BaseUrl + _baseEndpoint + "ByParentId/" + Id.ToString());
             return list;
         }
     }

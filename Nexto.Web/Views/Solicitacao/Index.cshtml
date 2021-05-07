@@ -33,72 +33,84 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @if (Model != null)
         {
-            <tr>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Sigla)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Select.Solicitacao.FirstOrDefault(x => x.Id == item.Tipo).Descricao)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DataInicio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DataFim)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Select.Status.FirstOrDefault(x => x.Id == item.Status).Descricao)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">🖋️</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">📄</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">🗑️</a> |
-                    <a data-toggle="modal" data-target="#@item.Nome@item.Id" style="cursor: pointer;">📋</a>
-                </td>
-            </tr>
+            foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Sigla)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Select.Solicitacao.FirstOrDefault(x => x.Id == item.Tipo).Descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataInicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataFim)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Select.Status.FirstOrDefault(x => x.Id == item.Status).Descricao)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">🖋️</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">📄</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">🗑️</a> |
+                        <a data-toggle="modal" data-target="#@item.Nome@item.Id" style="cursor: pointer;">📋</a>
+                    </td>
+                </tr>
 
+            }
         }
     </tbody>
 </table>
-
-@foreach (var item in Model)
+@if (Model != null)
 {
-    <div id="@item.Nome@item.Id" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Histórico da solicitação</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body resume section-bg" id="resume">
-                    <div class="row">
-                        <div class="col-12 resume-hover" data-aos="fade-up">
-                            <h4>@item.Nome</h4>
-
-                            @foreach (var formulario in item.Formularios)
-                            {
-                                <a asp-action="Details" asp-controller="Formulario" asp-route-id="@item.Id">
-                                    <div class="resume-item">
-                                        <h5>@formulario.Enviado.ToShortDateString()</h5>
-                                        <p><em>@formulario.Responsavel.Nome</em></p>
-                                    </div>
-                                </a>
-                            }
-                        </div>
+    foreach (var item in Model)
+    {
+        <div id="@item.Nome@item.Id" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Histórico da solicitação</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="modal-footer">
-                        <a type="button" asp-action="Create" asp-controller="Formulario" asp-route-id="5" class="btn btn-primary">Nova versão</a>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div class="modal-body resume section-bg" id="resume">
+                        <div class="row">
+                            <div class="col-12 resume-hover" data-aos="fade-up">
+                                <h4>@item.Nome</h4>
+
+                                @if (item.Formularios != null)
+                                {
+                                    foreach (var formulario in item.Formularios)
+                                    {
+                                        <a asp-action="Details" asp-controller="Formulario" asp-route-id="@item.Id">
+                                            <div class="resume-item">
+                                                <h5>@formulario.Enviado.ToShortDateString()</h5>
+                                                <p><em>@formulario.Responsavel.Nome</em></p>
+                                            </div>
+                                        </a>
+                                    }
+                                }
+                                else
+                                {
+                                    <p>Sem Formulários</p>
+                                }
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a type="button" asp-action="Create" asp-controller="Formulario" asp-route-id="5" class="btn btn-primary">Nova versão</a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
 }

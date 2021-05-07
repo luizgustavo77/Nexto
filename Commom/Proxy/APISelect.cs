@@ -1,4 +1,5 @@
 ﻿using Commom.Dto.SelectList;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -38,7 +39,12 @@ namespace Commom.Proxy
             {
                 if (!_ambienteTeste)
                 {
-                    result = await Http.GetFromJsonAsync<List<Option>>(_BaseUrl + _baseEndpoint + "perfil/");
+                    using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, _BaseUrl + _baseEndpoint + "perfil/"))
+                    {
+                        var requestReturn = await Http.SendAsync(request);
+                        string str = await requestReturn.Content.ReadAsStringAsync();
+                        result = JsonConvert.DeserializeObject<List<Option>>(str);
+                    }
                 }
                 else
                 {

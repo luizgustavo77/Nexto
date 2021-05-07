@@ -14,7 +14,7 @@ namespace Commom.Proxy
         {
             _ambienteTeste = ambienteTeste;
             _BaseUrl = "http://nextoapiapp.azurewebsites.net/";
-            _baseEndpoint = "api/solicitacao";
+            _baseEndpoint = "api/solicitacao/";
         }
 
         public async Task<RetornaAcaoDto> AddArquivos(List<ArquivoDto> arquivos)
@@ -47,7 +47,7 @@ namespace Commom.Proxy
         public virtual async Task<RetornaAcaoDto> DeleteArquivo(int Id)
         {
             RetornaAcaoDto retorna = new RetornaAcaoDto();
-            var result = await Http.DeleteAsync(_BaseUrl + "/" + _baseEndpoint + "/" + Id.ToString());
+            var result = await Http.DeleteAsync(_BaseUrl + "/" + _baseEndpoint + Id.ToString());
             try
             {
                 if (!_ambienteTeste)

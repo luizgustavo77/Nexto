@@ -56,6 +56,7 @@ namespace Nexto.Web.Controllers
                 {
                     ModelState.AddModelError("Senha", "Senha ou usuario errado!");
                 }
+
                 UserDto result = await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).Login(user);
 
                 if (result != null && result.Id > 0)

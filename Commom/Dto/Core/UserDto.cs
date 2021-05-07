@@ -40,7 +40,7 @@ namespace Commom.Dto.Core
 
         [Required(ErrorMessage = "Campo obrigatório!")]
         [DisplayName("Sexo")]
-        public int Sexo { get; set; }
+        public int? Sexo { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório!")]
         [DisplayName("Estado")]
@@ -50,8 +50,9 @@ namespace Commom.Dto.Core
         [DisplayName("Cidade")]
         public string Cidade { get; set; }
 
-        //--
         [Required(ErrorMessage = "Campo obrigatório!")]
-        public int Perfil { get; set; }
+        public int? Perfil { get; set; }
+
+        public string Token { get; set; }
     }
 }
