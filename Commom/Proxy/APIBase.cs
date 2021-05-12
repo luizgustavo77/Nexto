@@ -45,7 +45,9 @@ namespace Commom.Proxy
                         var requestReturn = await Http.SendAsync(request);
 
                         if (requestReturn.IsSuccessStatusCode)
-                            retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
+                        {
+                            retorna.Retorno = true;
+                        }
                     }
                 }
                 else
@@ -74,7 +76,9 @@ namespace Commom.Proxy
                         var requestReturn = await Http.SendAsync(request);
 
                         if (requestReturn.IsSuccessStatusCode)
-                            retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
+                        {
+                            retorna.Retorno = true;
+                        }
                     }
                 }
                 else
@@ -103,7 +107,9 @@ namespace Commom.Proxy
                         var requestReturn = await Http.SendAsync(request);
 
                         if (requestReturn.IsSuccessStatusCode)
-                            retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
+                        {
+                            retorna.Retorno = true;
+                        }
                     }
                 }
                 else
@@ -128,6 +134,7 @@ namespace Commom.Proxy
                         var requestReturn = await Http.SendAsync(request);
                         string str =
                             await requestReturn.Content.ReadAsStringAsync();
+                        str = str.Replace("[", "").Replace("]", "");
                         return JsonConvert.DeserializeObject<TInterface>(str);
                     }
                 }

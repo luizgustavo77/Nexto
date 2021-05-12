@@ -25,6 +25,8 @@ namespace Nexto.Web.Controllers
         {
             List<UserDto> users = await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).GetAll();
 
+            EMail.Send("luiz_gustavo_77@hotmail.com", "ola", "ola");
+
             return View(users);
         }
 
@@ -42,7 +44,7 @@ namespace Nexto.Web.Controllers
                 RetornaAcaoDto result = await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).Add(user);
                 if (result.Retorno)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Core");
                 }
                 else
                 {
@@ -89,16 +91,11 @@ namespace Nexto.Web.Controllers
         {
             if (id != user.Id)
             {
-                return NotFound();
+                return View(user);
             }
+            await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).Edit(user);
 
-            if (ModelState.IsValid)
-            {
-                await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).Edit(user);
-
-                return RedirectToAction(nameof(Index));
-            }
-            return View(user);
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Delete(int? id)

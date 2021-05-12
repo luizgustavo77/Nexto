@@ -15,16 +15,16 @@
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Usuario" class="control-label"></label>
                 <input asp-for="Usuario" class="form-control" />
                 <span asp-validation-for="Usuario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Senha" class="control-label"></label>
-                <input asp-for="Senha" type="password" class="form-control" />
-                <span asp-validation-for="Senha" class="text-danger"></span>
-            </div>
+            </div>*@
+            @*<div class="form-group">
+                    <label asp-for="Senha" class="control-label"></label>
+                    <input asp-for="Senha" type="password" class="form-control" />
+                    <span asp-validation-for="Senha" class="text-danger"></span>
+                </div>*@
             <div class="form-group">
                 <label asp-for="BirthDate" class="control-label"></label>
                 <input asp-for="BirthDate" type="date" class="form-control" />
@@ -51,7 +51,14 @@
                     <option value="">Selecione</option>
                     @foreach (var item in Select.Sexo)
                     {
-                        <option value="@item.Id">@item.Descricao</option>
+                        if (item.Id == Model.Sexo)
+                        {
+                            <option selected value="@item.Id">@item.Descricao</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id">@item.Descricao</option>
+                        }
                     }
                 </select>
                 <span asp-validation-for="Sexo" class="text-danger"></span>
@@ -72,7 +79,14 @@
                     <option value="">Selecione</option>
                     @foreach (var item in Select.Perfil)
                     {
-                        <option value="@item.Id">@item.Descricao</option>
+                        if (item.Id == Model.Perfil)
+                        {
+                            <option selected value="@item.Id">@item.Descricao</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id">@item.Descricao</option>
+                        }
                     }
                 </select>
                 <span asp-validation-for="Perfil" class="text-danger"></span>
