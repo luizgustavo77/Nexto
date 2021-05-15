@@ -25,8 +25,6 @@ namespace Nexto.Web.Controllers
         {
             List<UserDto> users = await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).GetAll();
 
-            EMail.Send("luiz_gustavo_77@hotmail.com", "ola", "ola");
-
             return View(users);
         }
 

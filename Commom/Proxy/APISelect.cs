@@ -50,7 +50,7 @@ namespace Commom.Proxy
                 {
                     result = new List<Option>()
                     {
-                        new Option(1, "Cliente"),
+                        new Option(1, "Administrador"),
                         new Option(2, "Colaborador")
                     };
                 }

@@ -50,7 +50,7 @@ namespace Nexto.Web.Controllers
                 RetornaAcaoDto result = await new APISolicitacao(bool.Parse(AppSettings.Get("ambienteTeste"))).Add(solicitacao);
                 if (result.Retorno)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction(nameof(Index));
                 }
                 else
                 {

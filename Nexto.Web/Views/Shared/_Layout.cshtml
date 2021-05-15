@@ -59,7 +59,7 @@
                                 <a class="nav-link text-light" asp-area="" asp-controller="Solicitacao" asp-action="Index">Solicitações</a>
                             </li>
 
-                            if (Nexto.Web.Helpers.Session.GetObject<UserDto>("usuario").Perfil == 2)
+                            if (Nexto.Web.Helpers.Session.GetObject<UserDto>("usuario").Perfil == 1)
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-area="" asp-controller="Core" asp-action="Index">Usuários</a>
