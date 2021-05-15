@@ -41,25 +41,22 @@ namespace Commom.Proxy
                     Retorno = "Por favor rever Campo de Aplicacao",
                     Solucaoinvencao = texto,
                     Vantagens = texto,
-                    Solicitacao = new SolicitacaoDto()
-                    {
-                        Id = 1
-                    }
-                };
-                return Task.Delay(100).ContinueWith(t => formulario);
-            }
-        }
-
-        public override Task<List<FormularioDto>> GetAll()
-        {
-            if (!_ambienteTeste)
-                return base.GetAll();
-            else
-            {
-                List<FormularioDto> formularios = new List<FormularioDto>();
-
-                return Task.Delay(100).ContinueWith(t => formularios);
-            }
+                    Solicitacao = 1
+            };
+            return Task.Delay(100).ContinueWith(t => formulario);
         }
     }
+
+    public override Task<List<FormularioDto>> GetAll()
+    {
+        if (!_ambienteTeste)
+            return base.GetAll();
+        else
+        {
+            List<FormularioDto> formularios = new List<FormularioDto>();
+
+            return Task.Delay(100).ContinueWith(t => formularios);
+        }
+    }
+}
 }
