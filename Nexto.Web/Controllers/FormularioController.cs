@@ -32,7 +32,9 @@ namespace Nexto.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                var solicitacao = RouteData.Values["id"]; 
                 //formulario.Id = Guid.NewGuid();
+                formulario.Solicitacao = int.Parse(solicitacao.ToString());
                 RetornaAcaoDto result = await new APIFormulario(bool.Parse(AppSettings.Get("ambienteTeste"))).Add(formulario);
                 if (result.Retorno)
                 {

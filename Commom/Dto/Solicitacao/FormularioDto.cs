@@ -8,7 +8,7 @@ namespace Commom.Dto.Solicitacao
 {
     public class FormularioDto : BaseDto
     {
-        public SolicitacaoDto Solicitacao { get; set; }
+        public int Solicitacao { get; set; }
 
         [DisplayName("Data de envio")]
         public DateTime Enviado { get; set; }

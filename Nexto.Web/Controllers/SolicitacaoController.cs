@@ -27,6 +27,12 @@ namespace Nexto.Web.Controllers
         {
             List<SolicitacaoDto> solicitacoes = await new APISolicitacao(bool.Parse(AppSettings.Get("ambienteTeste"))).GetAll();
 
+            foreach (var item in solicitacoes)
+            {
+                if (item.Nome == null)
+                    item.Nome = " ";
+            }
+
             return View(solicitacoes);
         }
         public IActionResult Create()

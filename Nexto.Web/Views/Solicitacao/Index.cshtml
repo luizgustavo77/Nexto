@@ -60,10 +60,9 @@
                         <a asp-action="Edit" asp-route-id="@item.Id">🖋️</a> |
                         <a asp-action="Details" asp-route-id="@item.Id">📄</a> |
                         <a asp-action="Delete" asp-route-id="@item.Id">🗑️</a> |
-                        <a data-toggle="modal" data-target="#@item.Nome@item.Id" style="cursor: pointer;">📋</a>
+                        <a data-toggle="modal" data-target="#@(item.Nome.Replace(" ", "") + item.Id)" style="cursor: pointer;">📋</a>
                     </td>
                 </tr>
-
             }
         }
     </tbody>
@@ -72,7 +71,7 @@
 {
     foreach (var item in Model)
     {
-        <div id="@item.Nome@item.Id" class="modal" tabindex="-1" role="dialog">
+        <div id="@(item.Nome.Replace(" ", "") + item.Id)" class="modal" tabindex="-1" role="dialog" aria-labelledby="@(item.Nome.Replace(" ", "") + item.Id)" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -105,7 +104,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a type="button" asp-action="Create" asp-controller="Formulario" asp-route-id="5" class="btn btn-primary">Nova versão</a>
+                            <a type="button" asp-action="Create" asp-controller="Formulario" asp-route-id="@item.Id" class="btn btn-primary">Nova versão</a>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
