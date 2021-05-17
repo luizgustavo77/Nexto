@@ -10,14 +10,18 @@ $('#idInputTypeFile').fileupload({
     url: base_path + "/Solicitacao/UploadFiles",
     autoUpload: true,
     done: function (e, data) {
+        mostrarLoading();
+
         if (data.result) {
             formulario().addArquivo(data.result);
         }
         else {
+            removerLoading();
             alert('Houve um erro ao tentar submeter o arquivo.');
         }
     },
     error: function (error) {
+        removerLoading();
         alert('Houve um erro ao tentar submeter o arquivo.');
     }
 });
@@ -39,6 +43,8 @@ var formulario = function () {
     var addArquivo = function (result) {
         arquivos.push(result[0]);
         $(controles().txt_arquivo).val("Arquivos adicionados.");
+
+        removerLoading();
     }
 
     var salvarArquivo = function () {
