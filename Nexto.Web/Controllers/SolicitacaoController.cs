@@ -1,9 +1,11 @@
 ﻿using Commom.Dto;
+using Commom.Dto.Core;
 using Commom.Dto.SelectList;
 using Commom.Dto.Solicitacao;
 using Commom.Proxy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Nexto.Web.Helpers;
 using System;
 using System.Collections.Generic;
@@ -46,7 +48,9 @@ namespace Nexto.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                //solicitacao.Id = Guid.NewGuid();
+                solicitacao.DataInicio = DateTime.Now;
+                solicitacao.Cliente = Session.GetObject<UserDto>("usuario");
+
                 RetornaAcaoDto result = await new APISolicitacao(bool.Parse(AppSettings.Get("ambienteTeste"))).Add(solicitacao);
                 if (result.Retorno)
                 {
@@ -136,7 +140,7 @@ namespace Nexto.Web.Controllers
         [HttpPost]
         public async Task<JsonResult> UploadFiles()
         {
-            IList<ArquivoDto> result = new List<ArquivoDto>();
+            List<ArquivoDto> result = new List<ArquivoDto>();
             try
             {
                 foreach (var file in Request.Form.Files)
@@ -162,11 +166,12 @@ namespace Nexto.Web.Controllers
         }
 
         [HttpPost]
-        public async Task SalvarArquivo(List<ArquivoDto> arquivos, int tipo)
+        public async Task SalvarArquivo(List<ArquivoDto> arquivos, int tipo, int solicitacao)
         {
             foreach (var item in arquivos)
             {
                 item.Tipo = tipo;
+                item.Solicitacao = solicitacao;
             }
 
             new APISolicitacao(false).AddArquivos(arquivos);

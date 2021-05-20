@@ -42,6 +42,10 @@ namespace Nexto.Web.Controllers
                 RetornaAcaoDto result = await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).Add(user);
                 if (result.Retorno)
                 {
+                    EMail.Send(user.Email, "Bem vindo ao Nexto", $"Olá! <br> esse endereço" +
+                        $"de e-mail foi cadastrado no Nexto e agora você é capaz de usar " +
+                        $"nossa aplicação. <br> <br> https://nextoweb.azurewebsites.net/ ");
+
                     return RedirectToAction("Index", "Core");
                 }
                 else

@@ -1,4 +1,5 @@
 ﻿using Commom.Dto;
+using Commom.Dto.Core;
 using Commom.Dto.SelectList;
 using Commom.Dto.Solicitacao;
 using Commom.Proxy;
@@ -23,6 +24,9 @@ namespace Nexto.Web.Controllers
 
         public IActionResult Create()
         {
+            ViewBag.Admin = Session.GetObject<UserDto>("usuario").Perfil == 1 ? true : false;
+            ViewBag.Solicitacao = RouteData.Values["id"].ToString();
+
             return View();
         }
 
@@ -30,21 +34,26 @@ namespace Nexto.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Enviado,Retorno,CampoAplicacao,FundamentosInvencao,EstadoTecnica,Problemas,Solucaoinvencao,Vantagens,DescricaoDesenhos,DescricaoInvencao,Id,Nome")] FormularioDto formulario)
         {
+            UserDto usuario = Session.GetObject<UserDto>("usuario");
+            ViewBag.Admin = usuario.Perfil == 1 ? true : false;
+
             if (ModelState.IsValid)
             {
-                var solicitacao = RouteData.Values["id"]; 
-                //formulario.Id = Guid.NewGuid();
-                formulario.Solicitacao = int.Parse(solicitacao.ToString());
+                formulario.Id = null;
+                formulario.Responsavel = usuario;
+                formulario.Enviado = DateTime.Now;
+                formulario.Solicitacao = int.Parse(RouteData.Values["id"].ToString());
                 RetornaAcaoDto result = await new APIFormulario(bool.Parse(AppSettings.Get("ambienteTeste"))).Add(formulario);
                 if (result.Retorno)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction(nameof(Index));
                 }
                 else
                 {
                     ModelState.AddModelError("Retorno", result.Mensagem);
                 }
             }
+
             return View(formulario);
         }
 

@@ -28,6 +28,7 @@ $('#idInputTypeFile').fileupload({
 
 var arquivos = [];
 var lista = [];
+var solicitacao = 0;
 
 var formulario = function () {
 
@@ -56,7 +57,8 @@ var formulario = function () {
                     url: base_path + "/Solicitacao/SalvarArquivo",
                     data: {
                         arquivos: arquivos,
-                        tipo: $(controles().select_arquivo + ' :selected').val()
+                        tipo: $(controles().select_arquivo + ' :selected').val(),
+                        solicitacao: solicitacao
                     },
                     cache: false,
                 }).done(function (data) {

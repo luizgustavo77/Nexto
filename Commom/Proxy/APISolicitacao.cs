@@ -1,9 +1,12 @@
 ﻿using Commom.Dto;
 using Commom.Dto.Core;
 using Commom.Dto.Solicitacao;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Commom.Proxy
@@ -22,21 +25,27 @@ namespace Commom.Proxy
             RetornaAcaoDto retorna = new RetornaAcaoDto();
             try
             {
-                var result = await Http.PostAsJsonAsync<List<ArquivoDto>>(_BaseUrl + "/" + _baseEndpoint, arquivos);
-                try
+                if (!_ambienteTeste)
                 {
-                    if (!_ambienteTeste)
-                        retorna = await result.Content.ReadFromJsonAsync<RetornaAcaoDto>();
-                    else
-                        retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
-                }
-                catch (Exception)
-                {
+                    using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, _BaseUrl + _baseEndpoint))
+                    {
+                        string contentToSend = JsonConvert.SerializeObject(arquivos);
+                        request.Content = new StringContent(contentToSend, Encoding.UTF8, "application/json");
+                        var requestReturn = await Http.SendAsync(request);
 
+                        if (requestReturn.IsSuccessStatusCode)
+                        {
+                            retorna.Retorno = true;
+                        }
+                    }
+                    retorna = new RetornaAcaoDto() { Retorno = true };
+                }
+                else
+                {
+                    retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
                 }
 
                 return retorna;
-
             }
             catch (Exception ex)
             {
@@ -73,7 +82,7 @@ namespace Commom.Proxy
                     Id = 1,
                     Cliente = new Dto.Core.UserDto()
                     {
-                        Id =1,
+                        Id = 1,
                         Nome = "Cliente"
                     },
                     Colaborador = new Dto.Core.UserDto()
@@ -86,7 +95,7 @@ namespace Commom.Proxy
                     Nome = "Solicitacao",
                     Sigla = "SO",
                     Status = 1,
-                    Tipo = 1,                    
+                    Tipo = 1,
                     Formularios = new List<FormularioDto>()
                     {
                         new FormularioDto()
@@ -210,7 +219,7 @@ namespace Commom.Proxy
                     }
                 };
 
-                List<SolicitacaoDto> solicitacoes = new List<SolicitacaoDto>() { solicitacao1, solicitacao2};
+                List<SolicitacaoDto> solicitacoes = new List<SolicitacaoDto>() { solicitacao1, solicitacao2 };
 
                 return Task.Delay(100).ContinueWith(t => solicitacoes);
             }
