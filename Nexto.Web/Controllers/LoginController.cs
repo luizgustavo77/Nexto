@@ -31,18 +31,21 @@ namespace Nexto.Web.Controllers
                 ModelState.AddModelError("SenhaConfirm", "Senhas diferentes!");
             }
 
-            else if (ModelState.IsValid)
+            user.Perfil = 2;
+            RetornaAcaoDto result = await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).Add(user);
+            if (result.Retorno)
             {
-                RetornaAcaoDto result = await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).Add(user);
-                if (result.Retorno)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("Usuario", result.Mensagem);
-                }
+                EMail.Send(user.Email, "Bem vindo ao Nexto", $"Olá! <br> esse endereço" +
+                       $"de e-mail foi cadastrado no Nexto e agora você é capaz de usar " +
+                       $"nossa aplicação. <br> <br> https://nextoweb.azurewebsites.net/ ");
+
+                return RedirectToAction(nameof(Index));
             }
+            else
+            {
+                ModelState.AddModelError("Usuario", result.Mensagem);
+            }
+
             return View(user);
         }
 
