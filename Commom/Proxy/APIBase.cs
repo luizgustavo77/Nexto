@@ -51,7 +51,7 @@ namespace Commom.Proxy
                     }
                 }
                 else
-                    retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
+                    retorna = ReturnTeste();
 
                 return retorna;
 
@@ -82,7 +82,7 @@ namespace Commom.Proxy
                     }
                 }
                 else
-                    retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
+                    retorna =ReturnTeste();
             }
             catch (Exception ex)
             {
@@ -113,7 +113,7 @@ namespace Commom.Proxy
                     }
                 }
                 else
-                    retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
+                    retorna = ReturnTeste();
             }
             catch (Exception)
             {

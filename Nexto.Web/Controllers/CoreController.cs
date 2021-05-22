@@ -35,6 +35,11 @@ namespace Nexto.Web.Controllers
             if (user == null || string.IsNullOrEmpty(user.Senha) || !user.Senha.Equals(user.SenhaConfirm))
             {
                 ModelState.AddModelError("PassWordConfirm", "Senhas diferentes!");
+                return View(user);
+            }
+            if (!Valid(user))
+            {
+                return View(user);
             }
 
             else if (ModelState.IsValid)
@@ -51,9 +56,10 @@ namespace Nexto.Web.Controllers
                 else
                 {
                     ModelState.AddModelError("Nome", result.Mensagem);
+                    return View(user);
                 }
             }
-            return View(user);
+            return View(user); 
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -95,6 +101,10 @@ namespace Nexto.Web.Controllers
             {
                 return View(user);
             }
+            if (!Valid(user))
+            {
+                return View(user);
+            }
             await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).Edit(user);
 
             return RedirectToAction(nameof(Index));
@@ -122,6 +132,24 @@ namespace Nexto.Web.Controllers
         {
             await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).Delete(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        public bool Valid(UserDto user)
+        {
+            bool result = true;
+
+            if (!Test.IsValidEmail(user.Email))
+            {
+                result = false;
+                ModelState.AddModelError("Email", "EMail invalido!");
+            }
+            if (!Test.IsValidCpf(user.Cpf))
+            {
+                result = false;
+                ModelState.AddModelError("Cpf", "CPF invalido!");
+            }
+
+            return result;
         }
     }
 }

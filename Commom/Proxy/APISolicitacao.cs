@@ -42,7 +42,7 @@ namespace Commom.Proxy
                 }
                 else
                 {
-                    retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
+                    retorna = ReturnTeste();
                 }
 
                 return retorna;
@@ -62,7 +62,7 @@ namespace Commom.Proxy
                 if (!_ambienteTeste)
                     retorna = await result.Content.ReadFromJsonAsync<RetornaAcaoDto>();
                 else
-                    retorna = await Task.Run<RetornaAcaoDto>(async () => ReturnTeste());
+                    retorna = ReturnTeste();
             }
             catch (Exception)
             {

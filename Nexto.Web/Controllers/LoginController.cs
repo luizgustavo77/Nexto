@@ -29,6 +29,12 @@ namespace Nexto.Web.Controllers
             if (user == null || string.IsNullOrWhiteSpace(user.Senha) || !user.Senha.Equals(user.SenhaConfirm))
             {
                 ModelState.AddModelError("SenhaConfirm", "Senhas diferentes!");
+                return View(user);
+            }
+
+            if (!Valid(user))
+            {
+                return View(user);
             }
 
             user.Perfil = 2;
@@ -44,9 +50,8 @@ namespace Nexto.Web.Controllers
             else
             {
                 ModelState.AddModelError("Usuario", result.Mensagem);
+                return View(user);
             }
-
-            return View(user);
         }
 
         [HttpPost]
@@ -58,6 +63,7 @@ namespace Nexto.Web.Controllers
                 if (user == null || string.IsNullOrWhiteSpace(user.Senha))
                 {
                     ModelState.AddModelError("Senha", "Senha ou usuario errado!");
+                    return View(user);
                 }
 
                 UserDto result = await new APIUser(bool.Parse(AppSettings.Get("ambienteTeste"))).Login(user);
@@ -70,14 +76,14 @@ namespace Nexto.Web.Controllers
                 else
                 {
                     ModelState.AddModelError("Senha", "Senha ou usuario errado!");
+                    return View(user);
                 }
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("Senha", ex.Message);
+                return View(user);
             }
-
-            return View(user);
         }
 
         [AutorizacaoSessionAdmin]
@@ -85,6 +91,24 @@ namespace Nexto.Web.Controllers
         {
             Session.CleanObject();
             return RedirectToAction("Index", "Home");
+        }
+
+        public bool Valid(UserDto user)
+        {
+            bool result = true;
+
+            if (!Test.IsValidEmail(user.Email))
+            {
+                result = false;
+                ModelState.AddModelError("Email", "EMail invalido!");
+            }
+            if (!Test.IsValidCpf(user.Cpf))
+            {
+                result = false;
+                ModelState.AddModelError("Cpf", "CPF invalido!");
+            }
+
+            return result;
         }
     }
 }
