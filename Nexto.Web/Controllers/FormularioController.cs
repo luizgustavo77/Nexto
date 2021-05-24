@@ -46,7 +46,7 @@ namespace Nexto.Web.Controllers
                 RetornaAcaoDto result = await new APIFormulario(bool.Parse(AppSettings.Get("ambienteTeste"))).Add(formulario);
                 if (result.Retorno)
                 {
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Index", "Solicitacao");
                 }
                 else
                 {
@@ -94,7 +94,7 @@ namespace Nexto.Web.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await new APIFormulario(bool.Parse(AppSettings.Get("ambienteTeste"))).Delete(id);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Solicitacao");
         }
     }
 }
