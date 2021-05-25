@@ -1,11 +1,9 @@
-﻿using Nexto.Commom.Dto;
+﻿using Microsoft.AspNetCore.Mvc;
+using Nexto.Commom.Dto;
 using Nexto.Commom.Dto.Core;
 using Nexto.Commom.Dto.SelectList;
 using Nexto.Commom.Dto.Solicitacao;
 using Nexto.Commom.Proxy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using Nexto.Web.Helpers;
 using System;
 using System.Collections.Generic;
@@ -17,11 +15,8 @@ namespace Nexto.Web.Controllers
     [AutorizacaoSessionAdmin]
     public class SolicitacaoController : Controller
     {
-        private readonly ILogger<SolicitacaoController> _logger;
-
-        public SolicitacaoController(ILogger<SolicitacaoController> logger)
+        public SolicitacaoController()
         {
-            _logger = logger;
             new Select().CarregaDados();
         }
 

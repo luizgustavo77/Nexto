@@ -1,9 +1,8 @@
-﻿using Nexto.Commom.Dto;
+﻿using Microsoft.AspNetCore.Mvc;
+using Nexto.Commom.Dto;
 using Nexto.Commom.Dto.Core;
 using Nexto.Commom.Dto.SelectList;
 using Nexto.Commom.Proxy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Nexto.Web.Helpers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,11 +12,8 @@ namespace Nexto.Web.Controllers
     [AutorizacaoSessionAdmin]
     public class CoreController : Controller
     {
-        private readonly ILogger<CoreController> _logger;
-
-        public CoreController(ILogger<CoreController> logger)
+        public CoreController()
         {
-            _logger = logger;
             new Select().CarregaDados();
         }
 

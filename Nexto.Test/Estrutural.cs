@@ -4,7 +4,7 @@ using Xunit;
 namespace Nexto.Test
 {
     /// <summary>
-    /// Branca
+    /// Caixa Branca
     /// </summary>
     public class Estrutural
     {

@@ -1,10 +1,9 @@
-﻿using Nexto.Commom.Dto;
+﻿using Microsoft.AspNetCore.Mvc;
+using Nexto.Commom.Dto;
 using Nexto.Commom.Dto.Core;
 using Nexto.Commom.Dto.SelectList;
 using Nexto.Commom.Dto.Solicitacao;
 using Nexto.Commom.Proxy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Nexto.Web.Helpers;
 using System;
 using System.Threading.Tasks;
@@ -14,11 +13,8 @@ namespace Nexto.Web.Controllers
     [AutorizacaoSessionAdmin]
     public class FormularioController : Controller
     {
-        private readonly ILogger<FormularioController> _logger;
-
-        public FormularioController(ILogger<FormularioController> logger)
+        public FormularioController()
         {
-            _logger = logger;
             new Select().CarregaDados();
         }
 

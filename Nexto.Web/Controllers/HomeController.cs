@@ -1,17 +1,14 @@
-﻿using Nexto.Commom.Dto.SelectList;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Mvc;
+using Nexto.Commom.Dto.SelectList;
 using Nexto.Web.Models;
 
 namespace Nexto.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController()
         {
-            _logger = logger;
             new Select().CarregaDados();
         }
 

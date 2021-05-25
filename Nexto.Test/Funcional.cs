@@ -1,48 +1,49 @@
-using Nexto.Commom.Test;
+using Microsoft.AspNetCore.Mvc;
+using Nexto.Web.Controllers;
 using Xunit;
 
 namespace Nexto.Test
 {
     /// <summary>
-    /// Preta
+    /// Caixa Preta
     /// </summary>
     public class Funcional
     {
-        [Theory]
-        [InlineData("955.600.510-20")]
-        [InlineData("868.548.460-05")]
-        [InlineData("330.092.150-37")]
-        public void ValidCPF(string cpf)
+        [Fact]
+        public void ValidHome()
         {
-            
+            HomeController controller = new HomeController();
+            var result = controller.Index();
 
-            Assert.True(Valid.IsCpf(cpf));
+            Assert.IsType<ViewResult>(result);
         }
 
-        [Theory]
-        [InlineData("tm@hotmail.com")]
-        [InlineData("tm@gmail.com")]
-        [InlineData("tm@yahoo.com")]
-        public void ValidEMail(string email)
+        [Fact]
+        public async void ValidCore()
         {
-            Assert.True(Valid.IsEmail(email));
-        }
-        [Theory]
-        [InlineData("955.600.510-666")]
-        [InlineData("868.548.460-666")]
-        [InlineData("330.092.150-666")]
-        public void InvalidCPF(string cpf)
-        {
-            Assert.True(!Valid.IsCpf(cpf));
+            CoreController controller = new CoreController();
+            var result = await controller.Index();
+
+            Assert.IsType<ViewResult>(result);
         }
 
-        [Theory]
-        [InlineData("tmhotmail.com")]
-        [InlineData("tm77gmail.com")]
-        [InlineData("tm@@yahoo.com")]
-        public void InvalidEMail(string email)
+        [Fact]
+        public void ValidLogin()
         {
-            Assert.True(!Valid.IsEmail(email));
+            LoginController controller = new LoginController();
+            var result = controller.Index();
+
+            Assert.IsType<ViewResult>(result);
         }
+
+        [Fact]
+        public async void ValidSolicitacao()
+        {
+            SolicitacaoController controller = new SolicitacaoController();
+            var result = await controller.Index();
+
+            Assert.IsType<ViewResult>(result);
+        }
+
     }
 }

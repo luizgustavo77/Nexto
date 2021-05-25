@@ -1,9 +1,8 @@
-﻿using Nexto.Commom.Dto;
+﻿using Microsoft.AspNetCore.Mvc;
+using Nexto.Commom.Dto;
 using Nexto.Commom.Dto.Core;
 using Nexto.Commom.Dto.SelectList;
 using Nexto.Commom.Proxy;
-using Nexto.Commom.Test;
-using Microsoft.AspNetCore.Mvc;
 using Nexto.Web.Helpers;
 using System;
 using System.Threading.Tasks;
@@ -12,6 +11,11 @@ namespace Nexto.Web.Controllers
 {
     public class LoginController : Controller
     {
+        public LoginController()
+        {
+            new Select().CarregaDados();
+        }
+
         public IActionResult Index()
         {
             return View("Login");
