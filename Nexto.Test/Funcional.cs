@@ -3,7 +3,10 @@ using Xunit;
 
 namespace Nexto.Test
 {
-    public class UnitTest
+    /// <summary>
+    /// Preta
+    /// </summary>
+    public class Funcional
     {
         [Theory]
         [InlineData("955.600.510-20")]
@@ -11,6 +14,8 @@ namespace Nexto.Test
         [InlineData("330.092.150-37")]
         public void ValidCPF(string cpf)
         {
+            
+
             Assert.True(Valid.IsCpf(cpf));
         }
 
