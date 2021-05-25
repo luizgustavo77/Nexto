@@ -1,6 +1,6 @@
-﻿using Commom.Dto;
-using Commom.Dto.Core;
-using Commom.Dto.Solicitacao;
+﻿using Nexto.Commom.Dto;
+using Nexto.Commom.Dto.Core;
+using Nexto.Commom.Dto.Solicitacao;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Commom.Proxy
+namespace Nexto.Commom.Proxy
 {
     public class APISolicitacao : APIBase<SolicitacaoDto>
     {

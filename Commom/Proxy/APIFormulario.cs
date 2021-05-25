@@ -1,10 +1,10 @@
-﻿using Commom.Dto.Core;
-using Commom.Dto.Solicitacao;
+﻿using Nexto.Commom.Dto.Core;
+using Nexto.Commom.Dto.Solicitacao;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Commom.Proxy
+namespace Nexto.Commom.Proxy
 {
     public class APIFormulario : APIBase<FormularioDto>
     {

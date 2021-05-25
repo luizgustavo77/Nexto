@@ -1,4 +1,4 @@
-﻿namespace Commom.Dto
+﻿namespace Nexto.Commom.Dto
 {
     public class RetornaAcaoDto
     {

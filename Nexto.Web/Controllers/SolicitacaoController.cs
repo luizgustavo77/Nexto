@@ -1,8 +1,8 @@
-﻿using Commom.Dto;
-using Commom.Dto.Core;
-using Commom.Dto.SelectList;
-using Commom.Dto.Solicitacao;
-using Commom.Proxy;
+﻿using Nexto.Commom.Dto;
+using Nexto.Commom.Dto.Core;
+using Nexto.Commom.Dto.SelectList;
+using Nexto.Commom.Dto.Solicitacao;
+using Nexto.Commom.Proxy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;

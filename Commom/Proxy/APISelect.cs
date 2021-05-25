@@ -1,4 +1,4 @@
-﻿using Commom.Dto.SelectList;
+﻿using Nexto.Commom.Dto.SelectList;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace Commom.Proxy
+namespace Nexto.Commom.Proxy
 {
     public class APISelect
     {

@@ -1,5 +1,5 @@
-﻿using Commom.Dto;
-using Commom.Dto.Core;
+﻿using Nexto.Commom.Dto;
+using Nexto.Commom.Dto.Core;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Commom.Proxy
+namespace Nexto.Commom.Proxy
 {
     public class APIUser : APIBase<UserDto>
     {

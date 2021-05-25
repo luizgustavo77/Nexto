@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Commom.Dto.SelectList
+namespace Nexto.Commom.Dto.SelectList
 {
     public class Option
     {

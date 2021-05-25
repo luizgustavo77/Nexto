@@ -1,8 +1,8 @@
-﻿using Commom.Proxy;
+﻿using Nexto.Commom.Proxy;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Commom.Dto.SelectList
+namespace Nexto.Commom.Dto.SelectList
 {
     public class Select
     {

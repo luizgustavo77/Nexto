@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Commom.Dto.Solicitacao
+﻿namespace Nexto.Commom.Dto.Solicitacao
 {
     public class ArquivoSolicitacaoDto : BaseDto
     {

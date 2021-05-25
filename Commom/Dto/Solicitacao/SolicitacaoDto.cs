@@ -1,10 +1,10 @@
-﻿using Commom.Dto.Core;
+﻿using Nexto.Commom.Dto.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace Commom.Dto.Solicitacao
+namespace Nexto.Commom.Dto.Solicitacao
 {
     public class SolicitacaoDto : BaseDto
     {

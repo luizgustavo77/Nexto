@@ -1,7 +1,7 @@
-﻿using Commom.Dto;
-using Commom.Dto.Core;
-using Commom.Dto.SelectList;
-using Commom.Proxy;
+﻿using Nexto.Commom.Dto;
+using Nexto.Commom.Dto.Core;
+using Nexto.Commom.Dto.SelectList;
+using Nexto.Commom.Proxy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Nexto.Web.Helpers;
@@ -138,12 +138,12 @@ namespace Nexto.Web.Controllers
         {
             bool result = true;
 
-            if (!Test.IsValidEmail(user.Email))
+            if (!Commom.Test.Valid.IsEmail(user.Email))
             {
                 result = false;
                 ModelState.AddModelError("Email", "EMail invalido!");
             }
-            if (!Test.IsValidCpf(user.Cpf))
+            if (!Commom.Test.Valid.IsCpf(user.Cpf))
             {
                 result = false;
                 ModelState.AddModelError("Cpf", "CPF invalido!");
