@@ -11,7 +11,8 @@ namespace Nexto.Commom.Proxy
         public APIFormulario(bool ambienteTeste)
         {
             _ambienteTeste = ambienteTeste;
-            _BaseUrl = "http://nextoapiapp.azurewebsites.net/";
+            //_BaseUrl = "http://nextoapiapp.azurewebsites.net/";
+            _BaseUrl = base._BaseUrl;
             _baseEndpoint = "api/formulario/";
         }
 

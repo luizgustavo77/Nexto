@@ -13,7 +13,7 @@ namespace Nexto.Commom.Proxy
     public class APIBase<TInterface> where TInterface : BaseDto
     {
         internal string _baseEndpoint;
-        public string _BaseUrl { get; set; }
+        public string _BaseUrl { get; set; } = "http://localhost:3000/";
         public bool _ambienteTeste = false;
         internal HttpClient Http;
 
@@ -43,6 +43,8 @@ namespace Nexto.Commom.Proxy
                         string contentToSend = JsonConvert.SerializeObject(Item);
                         request.Content = new StringContent(contentToSend, Encoding.UTF8, "application/json");
                         var requestReturn = await Http.SendAsync(request);
+
+                        retorna.Mensagem = await requestReturn.Content.ReadAsStringAsync();
 
                         if (requestReturn.IsSuccessStatusCode)
                         {
@@ -75,6 +77,8 @@ namespace Nexto.Commom.Proxy
                         request.Content = new StringContent(contentToSend, Encoding.UTF8, "application/json");
                         var requestReturn = await Http.SendAsync(request);
 
+                        retorna.Mensagem = await requestReturn.Content.ReadAsStringAsync();
+
                         if (requestReturn.IsSuccessStatusCode)
                         {
                             retorna.Retorno = true;
@@ -100,11 +104,12 @@ namespace Nexto.Commom.Proxy
             {
                 if (!_ambienteTeste)
                 {
-                    using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, _BaseUrl + _baseEndpoint))
+                    using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, _BaseUrl + _baseEndpoint + Id.ToString()))
                     {
-                        string contentToSend = JsonConvert.SerializeObject(Id);
-                        request.Content = new StringContent(contentToSend, Encoding.UTF8, "application/json");
+                        //string contentToSend = JsonConvert.SerializeObject(Id);
+                        //request.Content = new StringContent(contentToSend, Encoding.UTF8, "application/json");
                         var requestReturn = await Http.SendAsync(request);
+                        retorna.Mensagem = await requestReturn.Content.ReadAsStringAsync();
 
                         if (requestReturn.IsSuccessStatusCode)
                         {
@@ -132,9 +137,8 @@ namespace Nexto.Commom.Proxy
                     using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, _BaseUrl + _baseEndpoint + Id.ToString()))
                     {
                         var requestReturn = await Http.SendAsync(request);
-                        string str =
-                            await requestReturn.Content.ReadAsStringAsync();
-                        str = str.Replace("[", "").Replace("]", "");
+                        string str = await requestReturn.Content.ReadAsStringAsync();
+                        //str = str.Replace("[", "").Replace("]", "");
                         return JsonConvert.DeserializeObject<TInterface>(str);
                     }
                 }
