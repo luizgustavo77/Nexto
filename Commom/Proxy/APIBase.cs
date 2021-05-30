@@ -13,7 +13,7 @@ namespace Nexto.Commom.Proxy
     public class APIBase<TInterface> where TInterface : BaseDto
     {
         internal string _baseEndpoint;
-        public string _BaseUrl { get; set; } = "http://localhost:3000/";
+        public string _BaseUrl { get; set; } = "http://nextoapiapp.azurewebsites.net/";
         public bool _ambienteTeste = false;
         internal HttpClient Http;
 
