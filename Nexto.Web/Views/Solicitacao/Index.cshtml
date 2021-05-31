@@ -89,7 +89,7 @@
                                 {
                                     foreach (var formulario in item.Formularios)
                                     {
-                                        <a asp-action="Details" asp-controller="Formulario" asp-route-id="@item.Id">
+                                        <a asp-action="Details" asp-controller="Formulario" asp-route-id="@formulario.Id">
                                             <div class="resume-item">
                                                 <h5>@formulario.Enviado.ToShortDateString()</h5>
                                                 <p><em>@formulario.Responsavel.Nome</em></p>

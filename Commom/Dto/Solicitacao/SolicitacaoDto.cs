@@ -8,6 +8,10 @@ namespace Nexto.Commom.Dto.Solicitacao
 {
     public class SolicitacaoDto : BaseDto
     {
+        public SolicitacaoDto()
+        {
+            Formularios = new List<FormularioDto>();
+        }
         public string Sigla { get; set; }
         public int? Tipo { get; set; }
 

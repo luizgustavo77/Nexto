@@ -24,10 +24,13 @@ namespace Nexto.Web.Controllers
         {
             List<SolicitacaoDto> solicitacoes = await new APISolicitacao(bool.Parse(AppSettings.Get("ambienteTeste"))).GetAll();
 
-            foreach (var item in solicitacoes)
+            if (solicitacoes != null)
             {
-                if (item.Nome == null)
-                    item.Nome = " ";
+                foreach (var item in solicitacoes)
+                {
+                    if (item.Nome == null)
+                        item.Nome = " ";
+                }
             }
 
             return View(solicitacoes);
@@ -146,7 +149,7 @@ namespace Nexto.Web.Controllers
                         file.OpenReadStream().CopyTo(ms);
                         ArquivoDto arquivo = new ArquivoDto();
                         arquivo.Nome = file.FileName;
-                        arquivo.Conteudo = ms.ToArray();
+                        //arquivo.Conteudo = ms.ToArray();
                         arquivo.Extensao = file.ContentType;
 
                         result.Add(arquivo);
@@ -169,7 +172,7 @@ namespace Nexto.Web.Controllers
                 item.Solicitacao = solicitacao;
             }
 
-            new APISolicitacao(false).AddArquivos(arquivos);
+            await new APISolicitacao(false).AddArquivos(arquivos);
         }
 
         [HttpPost]

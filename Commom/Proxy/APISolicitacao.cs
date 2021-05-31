@@ -16,7 +16,8 @@ namespace Nexto.Commom.Proxy
         public APISolicitacao(bool ambienteTeste)
         {
             _ambienteTeste = ambienteTeste;
-            _BaseUrl = "http://nextoapiapp.azurewebsites.net/";
+            //_BaseUrl = "http://nextoapiapp.azurewebsites.net/";
+            _BaseUrl = base._BaseUrl;
             _baseEndpoint = "api/solicitacao/";
         }
 
@@ -27,7 +28,7 @@ namespace Nexto.Commom.Proxy
             {
                 if (!_ambienteTeste)
                 {
-                    using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, _BaseUrl + _baseEndpoint))
+                    using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, _BaseUrl + _baseEndpoint + "salvarArquivo"))
                     {
                         string contentToSend = JsonConvert.SerializeObject(arquivos);
                         request.Content = new StringContent(contentToSend, Encoding.UTF8, "application/json");
@@ -56,7 +57,7 @@ namespace Nexto.Commom.Proxy
         public virtual async Task<RetornaAcaoDto> DeleteArquivo(int Id)
         {
             RetornaAcaoDto retorna = new RetornaAcaoDto();
-            var result = await Http.DeleteAsync(_BaseUrl + "/" + _baseEndpoint + Id.ToString());
+            var result = await Http.DeleteAsync(_BaseUrl + "/deletaArquivo" + _baseEndpoint + Id.ToString());
             try
             {
                 if (!_ambienteTeste)

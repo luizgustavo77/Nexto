@@ -8,6 +8,10 @@ namespace Nexto.Commom.Dto.Solicitacao
 {
     public class FormularioDto : BaseDto
     {
+        public FormularioDto()
+        {
+            Arquivos = new List<ArquivoDto>();
+        }
         public int Solicitacao { get; set; }
 
         [DisplayName("Data de envio")]
