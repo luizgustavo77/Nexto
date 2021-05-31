@@ -19,7 +19,7 @@ namespace Nexto.Selenium.PageObjects
 
         public void Visitar()
         {
-            driver.Navigate().GoToUrl("https://nextoweb.azurewebsites.net/");
+            driver.Navigate().GoToUrl("https://nextoweb.azurewebsites.net/Login");
         }
 
         public void PreencheFormulario(string login, string senha)
@@ -30,7 +30,7 @@ namespace Nexto.Selenium.PageObjects
 
         public void SubmeteFormulario()
         {
-            driver.FindElement(byBotaoLogin).Submit();
+            driver.FindElement(byBotaoLogin).Click();
         }
 
     }

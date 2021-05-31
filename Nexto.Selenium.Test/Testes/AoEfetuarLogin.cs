@@ -21,13 +21,13 @@ namespace Nexto.Selenium.Testes
             //arrange
             var loginPO = new LoginPO(driver);
             loginPO.Visitar();
-            loginPO.PreencheFormulario("fulano@example.org", "123");
+            loginPO.PreencheFormulario("LG", "nota10");
 
             //act
             loginPO.SubmeteFormulario();
 
             //assert
-            Assert.Contains("Dashboard", driver.Title);
+            Assert.Equal("Home Page - Nexto", driver.Title);
         }
 
         [Fact]
@@ -36,13 +36,13 @@ namespace Nexto.Selenium.Testes
             //arrange
             var loginPO = new LoginPO(driver);
             loginPO.Visitar();
-            loginPO.PreencheFormulario("fulano@example.org", "");
+            loginPO.PreencheFormulario("ERRO", "ERRO");
 
             //act
             loginPO.SubmeteFormulario();
 
             //assert
-            Assert.Contains("Login", driver.PageSource);
+            Assert.Contains("Login - Nexto", driver.Title);
         }
     }
 }
