@@ -59,7 +59,7 @@
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id">🖋️</a> |
                         <a asp-action="Details" asp-route-id="@item.Id">📄</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">🗑️</a> |
+                        @*<a asp-action="Delete" asp-route-id="@item.Id">🗑️</a> |*@
                         <a data-toggle="modal" data-target="#@(item.Nome.Replace(" ", "") + item.Id)" style="cursor: pointer;">📋</a>
                     </td>
                 </tr>
